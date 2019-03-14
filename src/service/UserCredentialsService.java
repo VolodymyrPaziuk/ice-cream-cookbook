@@ -30,6 +30,8 @@ public class UserCredentialsService implements UserCredentialsDAO {
 
     }
 
+
+
     @Override
     public List<UserCredentials> getAll() {
 
@@ -59,8 +61,13 @@ public class UserCredentialsService implements UserCredentialsDAO {
     @Override
     public UserCredentials getUserCredentials(int id)  {
 
-
         return null;
+    }
+
+
+    @Override
+    public void add(UserCredentials userCredentials, int id) {
+
     }
 
 

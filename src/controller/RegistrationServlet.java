@@ -2,8 +2,11 @@ package controller;
 
 import constants.Attribute;
 import constants.Path;
+import entity.User;
 import entity.UserCredentials;
 import service.UserCredentialsService;
+import service.UserService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +19,7 @@ import java.io.IOException;
 public class RegistrationServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     UserCredentialsService userCredentialsService = null;
+    UserService userService = null;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +44,12 @@ public class RegistrationServlet extends HttpServlet {
 
 
             if (userCredentialsService.checkUserCredentials(request.getParameter(Attribute.LOGIN))) {
+                userService = new UserService();
+
                 userCredentialsService.add(userCredentials);
+
+                userService.add(new User(), userCredentialsService.getUserCredentials(userCredentials.getLogin(), userCredentials.getPassword()).getId());
+
                 response.sendRedirect(Path.LOGIN_PAGE);
             } else {
                 request.getRequestDispatcher(Path.REGISTRATION_PAGE).forward(request, response);

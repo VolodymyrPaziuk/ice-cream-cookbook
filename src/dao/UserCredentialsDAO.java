@@ -2,12 +2,13 @@ package dao;
 
 import entity.UserCredentials;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserCredentialsDAO {
 
     void add(UserCredentials userCredentials);
+
+    void add(UserCredentials userCredentials, int id);
 
     List<UserCredentials> getAll();
 
