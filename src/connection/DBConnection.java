@@ -21,14 +21,12 @@ public class DBConnection {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-
         }catch (ClassNotFoundException ex){
             System.out.println("Could not find class");
             System.out.println(ex.getMessage());
         }
 
         Properties properties = new Properties();
-
 
         try(InputStream inputStream = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream("database.properties")){
@@ -51,17 +49,19 @@ public class DBConnection {
     }
 
 
-    public static void closeQuietly(Connection conn) {
+    public static void closeConnection(Connection connection) {
         try {
-            conn.close();
+            connection.close();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public static void rollbackQuietly(Connection conn) {
+    public static void rollbackConnection(Connection connection) {
         try {
-            conn.rollback();
+            connection.rollback();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

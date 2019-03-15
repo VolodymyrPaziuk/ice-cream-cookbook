@@ -13,36 +13,30 @@ import java.util.List;
 
 public class UserCredentialsService implements UserCredentialsDAO {
 
-
     @Override
-    public void add(UserCredentials userCredentials)  {
+    public void add(UserCredentials userCredentials) {
         System.out.println(userCredentials.toString());
         String query = "INSERT INTO users_credentials (login, password) VALUES (?,?)";
-
         try {
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, userCredentials.getLogin());
-        preparedStatement.setString(2, userCredentials.getPassword());
-        preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, userCredentials.getLogin());
+            preparedStatement.setString(2, userCredentials.getPassword());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Cant read list of clients from DB");
+            e.printStackTrace();
         }
 
     }
-
 
 
     @Override
     public List<UserCredentials> getAll() {
 
         List<UserCredentials> listUserCredentials = new ArrayList<>();
-
         String query = "Select * from users_credentials";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
-
             ResultSet resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
                 UserCredentials userCredentials = new UserCredentials();
                 userCredentials.setLogin(resultSet.getString(Attribute.LOGIN));
@@ -59,7 +53,7 @@ public class UserCredentialsService implements UserCredentialsDAO {
     }
 
     @Override
-    public UserCredentials getUserCredentials(int id)  {
+    public UserCredentials getUserCredentials(int id) {
 
         return null;
     }
@@ -76,7 +70,7 @@ public class UserCredentialsService implements UserCredentialsDAO {
 
         UserCredentials userCredentials = null;
 
-        String query = "Select * from users_credentials where login = ? and password= ?";
+        String query = "Select * from users_credentials where login = ? and password = ?";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, login);
@@ -85,9 +79,10 @@ public class UserCredentialsService implements UserCredentialsDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 userCredentials = new UserCredentials();
+                userCredentials.setId(resultSet.getInt(Attribute.ID));
                 userCredentials.setLogin(resultSet.getString(Attribute.LOGIN));
                 userCredentials.setPassword(resultSet.getString(Attribute.PASSWORD));
-                System.out.println(userCredentials.toString());
+                System.out.println(userCredentials.toString() + " h");
 
                 return userCredentials;
             }
@@ -109,7 +104,7 @@ public class UserCredentialsService implements UserCredentialsDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
-            if (resultSet.getInt(1) != 1) {
+            if (resultSet.getInt(1) != 0) {
                 flag = true;
             }
         } catch (SQLException ex) {

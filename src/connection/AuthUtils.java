@@ -51,7 +51,7 @@ public class AuthUtils {
         return null;
     }
 
-    public static void deleteUserCredentialsCookie(HttpServletResponse response) {
+    public static void deleteUserCookie(HttpServletResponse response) {
         Cookie cookieUserCredentialsName = new Cookie(ATTRIBUTE_USER_NAME, null);
         cookieUserCredentialsName.setMaxAge(0);
         response.addCookie(cookieUserCredentialsName);

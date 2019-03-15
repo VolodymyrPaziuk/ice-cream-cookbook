@@ -36,7 +36,8 @@ public class UserCredentials {
     @Override
     public String toString() {
         return "UserCredentials{" +
-                "login='" + login + '\'' +
+                "id=" + id +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

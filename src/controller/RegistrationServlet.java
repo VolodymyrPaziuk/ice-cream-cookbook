@@ -17,6 +17,7 @@ import java.io.IOException;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
     UserCredentialsService userCredentialsService = null;
     UserService userService = null;
@@ -29,10 +30,8 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         if ((request.getParameter(Attribute.LOGIN) != null) && !(request.getParameter(Attribute.LOGIN).isEmpty())
                 && (request.getParameter(Attribute.PASSWORD) != null) && !(request.getParameter(Attribute.PASSWORD).isEmpty())) {
-
 
             UserCredentials userCredentials = new UserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
 
@@ -43,7 +42,7 @@ public class RegistrationServlet extends HttpServlet {
             userCredentialsService = new UserCredentialsService();
 
 
-            if (userCredentialsService.checkUserCredentials(request.getParameter(Attribute.LOGIN))) {
+            if (!userCredentialsService.checkUserCredentials(request.getParameter(Attribute.LOGIN))) {
                 userService = new UserService();
 
                 userCredentialsService.add(userCredentials);
@@ -57,11 +56,6 @@ public class RegistrationServlet extends HttpServlet {
 
         }
 
-
-        // redirect to home/main
-        // response.sendRedirect(request.getContextPath() + "/home");
-
-        //super.doPost(request, response);
     }
 
 
