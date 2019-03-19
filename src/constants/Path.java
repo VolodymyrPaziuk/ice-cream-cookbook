@@ -10,6 +10,8 @@ public class Path {
     public static final String SEARCH_RECIPE_PATH = "/search";
     public static final String USER_INFO = "/userInfo";
     public static final String CREATE_RECIPE_PATH = "/createRecipe";
+    public static final String EDIT_RECIPE_PATH = "/editRecipe";
+    public static final String EDIT_RECIPE_PAGE_JSP = "/editRecipe.jsp";
 
     public static final String HOME_PAGE_JSP = "/cookbook.jsp";
 
