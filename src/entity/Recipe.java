@@ -6,14 +6,13 @@ public class Recipe {
     private String description;
     private int cookingTime;
     private int preparationTime;
-    //private int userId;
 
-    public Recipe(String name, String description, int cookingTime, int preparationTime) {
+    public  Recipe(){}
+    public Recipe(String name,  int cookingTime, int preparationTime, String description) {
         this.name = name;
-        this.description = description;
         this.cookingTime = cookingTime;
         this.preparationTime = preparationTime;
-        //this.userId = userId;
+        this.description = description;
     }
 
 

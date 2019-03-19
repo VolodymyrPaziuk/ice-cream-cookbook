@@ -2,6 +2,7 @@ package controller;
 
 import connection.AuthUtils;
 import constants.Attribute;
+import constants.Path;
 import entity.UserCredentials;
 import service.UserCredentialsService;
 
@@ -18,9 +19,7 @@ import java.io.IOException;
 public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String redirectPage = "login2.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(redirectPage);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.LOGIN_PAGE_JSP);
         requestDispatcher.forward(request, response);
 
 
@@ -35,19 +34,15 @@ public class loginServlet extends HttpServlet {
 
         UserCredentials userCredentials = null;
         boolean isLogined = false;
-        System.out.println(request.getParameter(Attribute.LOGIN));
-        System.out.println(request.getParameter(Attribute.PASSWORD));
 
         if (request.getParameter(Attribute.LOGIN) != null && request.getParameter(Attribute.PASSWORD) != null) {
 
             UserCredentialsService userCredentialsService = new UserCredentialsService();
             userCredentials = userCredentialsService.getUserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
-            //System.out.println(userCredentials.toString());
 
             if (userCredentials != null) {
                 System.out.println(userCredentials.toString());
-
-                isLogined = true;
+                System.out.println("Mutherfucker is logined");
 
                 HttpSession session = request.getSession();
                 AuthUtils.storeLoginedUser(session, userCredentials);
@@ -59,12 +54,13 @@ public class loginServlet extends HttpServlet {
                     AuthUtils.deleteUserCookie(response);
                 }
 
-                response.sendRedirect(request.getHeader("Referer"));
+                response.sendRedirect(Path.HOME_PATH);
 
             } else {
-                isLogined = false;
                 request.setAttribute(Attribute.ERROR, "Invalid login or password");
-                request.getRequestDispatcher("login2.jsp").forward(request, response);
+                request.getRequestDispatcher(Path.LOGIN_PAGE_JSP).forward(request, response);
+
+
             }
 
         }

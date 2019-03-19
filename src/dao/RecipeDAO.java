@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface RecipeDAO {
 
-    void add(Recipe recipe);
+    void add(Recipe recipe, int user_id);
 
     List<Recipe> getAll();
 
-    Recipe getById(int id);
+    List<Recipe> getAllByUserId(int user_id);
+    Recipe getByUserId(int user_id);
 
     void update(Recipe recipe);
 

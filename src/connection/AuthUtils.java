@@ -28,15 +28,14 @@ public class AuthUtils {
     }
 
     public static UserCredentials getLoginedUser(HttpSession session) {
-        UserCredentials loginedUser = (UserCredentials) session.getAttribute("loginedUser");
-        return loginedUser;
+        return  (UserCredentials) session.getAttribute("loginedUser");
     }
 
     public static void storeUserCookie(HttpServletResponse response, UserCredentials userCredentials) {
         System.out.println("Store user cookie");
-        Cookie cookieUserName = new Cookie(ATTRIBUTE_USER_NAME, userCredentials.getLogin());
-        cookieUserName.setMaxAge( 60 * 60 * 1000);
-        response.addCookie(cookieUserName);
+        Cookie userCookie = new Cookie(ATTRIBUTE_USER_NAME, userCredentials.getLogin());
+        userCookie.setMaxAge( 60 * 60 * 1000);
+        response.addCookie(userCookie);
     }
 
     public static String getUserNameInCookie(HttpServletRequest request) {

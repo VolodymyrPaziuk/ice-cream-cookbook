@@ -15,28 +15,28 @@ public class UserService implements UserDAO {
 
     @Override
     public void add(User user) {
+       //add
 
     }
 
     @Override
-    public void add(User user, int id) {
-        //Todo: add user into users table by id(from user_credentials)
+    public void addById( int id) {//rename to add User id
         System.out.println("adding user with id = " + id);
 
-            System.out.println(user.toString());
-            /*
-            String query = "INSERT INTO users (login, password) VALUES (?,?)";
-            try {
-                PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-                preparedStatement.setString(1, userCredentials.getLogin());
-                preparedStatement.setString(2, userCredentials.getPassword());
+            String query = "INSERT INTO users (users_credentials_id) VALUES (?)";
+
+            try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);){
+
+                preparedStatement.setInt(1, id);
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }*/
+            }
 
 
     }
+
+
 
     @Override
     public List<User> getAll() {
@@ -61,16 +61,44 @@ public class UserService implements UserDAO {
 
     @Override
     public User getUser(int id) {
+        String query = "Select * from users where users_credentials_id = ? ";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setSurname(resultSet.getString("surname"));
+
+                return user;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public User getUser(String login, String password) {
+    public User getUser(String name, String surname) {
         return null;
     }
 
     @Override
     public void update(User user) {
+        String query = "UPDATE users SET name = ?, surname = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)){
+
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setInt(3, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

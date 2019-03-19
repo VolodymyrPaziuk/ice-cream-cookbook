@@ -19,8 +19,8 @@ import java.io.IOException;
 public class RegistrationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    UserCredentialsService userCredentialsService = null;
-    UserService userService = null;
+    UserCredentialsService userCredentialsService = new UserCredentialsService();
+    UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,25 +30,18 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if ((request.getParameter(Attribute.LOGIN) != null) && !(request.getParameter(Attribute.LOGIN).isEmpty())
-                && (request.getParameter(Attribute.PASSWORD) != null) && !(request.getParameter(Attribute.PASSWORD).isEmpty())) {
+        String login = request.getParameter(Attribute.LOGIN);
+        String password = request.getParameter(Attribute.PASSWORD);
 
-            UserCredentials userCredentials = new UserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
+        if ((login != null) && !(login.isEmpty())
+                && (password != null) && !(password.isEmpty())) {
 
-            //
-            System.out.println(userCredentials.toString());
-            //
+            UserCredentials userCredentials = new UserCredentials(login, password);
+            userCredentialsService.add(userCredentials);
 
-            userCredentialsService = new UserCredentialsService();
-
-
-            if (!userCredentialsService.checkUserCredentials(request.getParameter(Attribute.LOGIN))) {
-                userService = new UserService();
-
-                userCredentialsService.add(userCredentials);
-
-                userService.add(new User(), userCredentialsService.getUserCredentials(userCredentials.getLogin(), userCredentials.getPassword()).getId());
-
+            if (userCredentialsService.checkUserCredentials(login)) {
+                userCredentials = userCredentialsService.getUserCredentials(login, password);
+                userService.addById(userCredentials.getId());
                 response.sendRedirect(Path.LOGIN_PAGE);
             } else {
                 request.getRequestDispatcher(Path.REGISTRATION_PAGE).forward(request, response);

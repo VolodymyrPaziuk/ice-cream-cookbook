@@ -14,8 +14,8 @@ import java.util.List;
 public class RecipeService implements RecipeDAO {
 
     @Override
-    public void add(Recipe recipe) {
-        String query = "INSERT INTO recipes (name, description, cook_time, prep_time) VALUES (?,?,?,?)";
+    public void add(Recipe recipe, int user_id) {
+        String query = "INSERT INTO recipes (name, description, cook_time, prep_time, user_id) VALUES (?,?,?,?,?)";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
 
@@ -23,6 +23,8 @@ public class RecipeService implements RecipeDAO {
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setInt(3, recipe.getCookingTime());
             preparedStatement.setInt(4, recipe.getPreparationTime());
+            preparedStatement.setInt(5, user_id);
+
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -38,15 +40,19 @@ public class RecipeService implements RecipeDAO {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                listRecipes.add(new Recipe(resultSet.getString("name"),
-                        resultSet.getString("description"),
-                        resultSet.getInt("cook_time"),
-                        resultSet.getInt("prep_time")));
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setCookingTime(resultSet.getInt("cookingTime"));
+                recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+                listRecipes.add(recipe);
+
             }
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println("Cant read list of clients from DB");
+            System.out.println("Cant read list of recipes from DB");
         }
 
         return listRecipes;
@@ -54,10 +60,58 @@ public class RecipeService implements RecipeDAO {
 
     //ToDo: add implementation
     @Override
-    public Recipe getById(int id) {
+    public List<Recipe> getAllByUserId(int user_id) {
+        String query = "SELECT * FROM recipes WHERE user_id = ?";
 
+        List<Recipe> recipeList = new ArrayList<>();
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(5, user_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setCookingTime(resultSet.getInt("cookingTime"));
+                recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+                recipeList.add(recipe);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+
+        return recipeList;
+    }
+
+    @Override
+    public Recipe getByUserId(int user_id) {
+
+        String query = "Select * from recipes where user_id = ? ";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, user_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setCookingTime(resultSet.getInt("cookingTime"));
+                recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+
+                System.out.println(recipe.toString() + " h");
+                return recipe;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return null;
     }
+
 
     @Override
     public void update(Recipe recipe) {

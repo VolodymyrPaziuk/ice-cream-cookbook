@@ -29,6 +29,26 @@ public class UserCredentialsService implements UserCredentialsDAO {
     }
 
 
+/*
+    public void addUserCredentials(UserCredentials userCredentials, String id) {
+        String query = "INSERT INTO users_credentials (login, password) VALUES (?,?)";
+        String queryUser = "INSERT INTO users (id) VALUES (?)";
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, userCredentials.getLogin());
+            preparedStatement.setString(2, userCredentials.getPassword());
+            preparedStatement.executeUpdate();
+
+             preparedStatement = DBConnection.getConnection().prepareStatement(queryUser);
+            preparedStatement.setString(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+*/
+
     @Override
     public List<UserCredentials> getAll() {
 
@@ -40,7 +60,7 @@ public class UserCredentialsService implements UserCredentialsDAO {
             while (resultSet.next()) {
                 UserCredentials userCredentials = new UserCredentials();
                 userCredentials.setLogin(resultSet.getString(Attribute.LOGIN));
-                userCredentials.setLogin(resultSet.getString(Attribute.PASSWORD));
+                userCredentials.setPassword(resultSet.getString(Attribute.PASSWORD));
                 listUserCredentials.add(userCredentials);
                 System.out.println(userCredentials.toString());
             }
