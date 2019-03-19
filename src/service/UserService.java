@@ -14,20 +14,30 @@ import java.util.List;
 public class UserService implements UserDAO {
 
     @Override
-    public void add(User user) {
-       //add
+    public void add(User user, int credId) {
+        String query = "INSERT INTO users (name, surname, users_credentials_id) VALUES (?,?,?,?)";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)){
+
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setInt(3, credId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
     @Override
-    public void addById( int id) {//rename to add User id
-        System.out.println("adding user with id = " + id);
+    public void addById( int credId) {//rename to add User id
 
             String query = "INSERT INTO users (users_credentials_id) VALUES (?)";
 
             try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);){
 
-                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(1, credId);
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

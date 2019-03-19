@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/registration")
+@WebServlet(Path.REGISTRATION_PATH)
 public class RegistrationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -32,6 +32,8 @@ public class RegistrationServlet extends HttpServlet {
 
         String login = request.getParameter(Attribute.LOGIN);
         String password = request.getParameter(Attribute.PASSWORD);
+        String username = request.getParameter(Attribute.NAME);
+        String userSurname = request.getParameter(Attribute.SURNAME);
 
         if ((login != null) && !(login.isEmpty())
                 && (password != null) && !(password.isEmpty())) {
@@ -41,8 +43,10 @@ public class RegistrationServlet extends HttpServlet {
 
             if (userCredentialsService.checkUserCredentials(login)) {
                 userCredentials = userCredentialsService.getUserCredentials(login, password);
-                userService.addById(userCredentials.getId());
-                response.sendRedirect(Path.LOGIN_PAGE);
+
+                userService.add(new User(username,userSurname), userCredentials.getId());
+
+                response.sendRedirect(Path.LOGIN_PATH);
             } else {
                 request.getRequestDispatcher(Path.REGISTRATION_PAGE).forward(request, response);
             }

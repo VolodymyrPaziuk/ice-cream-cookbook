@@ -23,6 +23,12 @@ public class AuthUtils {
         return conn;
     }
 
+    //ToDo
+    public static boolean checkUserVerification(){
+
+        return true;
+    }
+
     public static void storeLoginedUser(HttpSession session, UserCredentials loginedUser) {
         session.setAttribute("loginedUser", loginedUser);
     }

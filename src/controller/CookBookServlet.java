@@ -6,6 +6,8 @@ import entity.Recipe;
 import entity.UserCredentials;
 import service.RecipeService;
 
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(Path.CREATE_RECIPE_PATH)
-public class CreateRecipeServlet extends HttpServlet {
-
-
+@WebServlet(Path.HOME_PATH)
+public class CookBookServlet extends HttpServlet {
     RecipeService recipeService = new RecipeService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -27,25 +29,22 @@ public class CreateRecipeServlet extends HttpServlet {
 
         if (loginedUserCredentials == null) {
             response.sendRedirect(request.getContextPath() + Path.LOGIN_PATH);
-            return;
+
+        } else {
+            List<Recipe> recipeList = recipeService.getAll();
+            System.out.println("recipe list");
+            System.out.println(recipeList);
+            request.setAttribute("recipes", recipeList);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.HOME_PAGE_JSP);
+            requestDispatcher.forward(request, response);
         }
-        request.getRequestDispatcher("/createRecipe.jsp").forward(request, response);
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        int userId = AuthUtils.getLoginedUser(session).getId();
-        String recipeName =  request.getParameter("recipeName");
-        int prepTime =  Integer.parseInt(request.getParameter("prepTime"));
-        int cookTime =  Integer.parseInt(request.getParameter("cookTime"));
-        String instruction =  request.getParameter("instruction");
-        Recipe recipe = new Recipe(recipeName,prepTime,cookTime,instruction);
-
-        System.out.println(recipe.toString());
-        System.out.println("user id is " + userId);
-        recipeService.add(recipe,userId);
-        response.sendRedirect(Path.HOME_PATH);
+        super.doPost(request, response);
     }
 }

@@ -31,7 +31,6 @@ public class loginServlet extends HttpServlet {
         String rememberMeStr = request.getParameter("rememberMe");
         boolean remember = "Y".equals(rememberMeStr);
 
-
         UserCredentials userCredentials = null;
         boolean isLogined = false;
 
@@ -41,13 +40,11 @@ public class loginServlet extends HttpServlet {
             userCredentials = userCredentialsService.getUserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
 
             if (userCredentials != null) {
-                System.out.println(userCredentials.toString());
                 System.out.println("Mutherfucker is logined");
 
                 HttpSession session = request.getSession();
                 AuthUtils.storeLoginedUser(session, userCredentials);
 
-                // If user checked "Remember me".
                 if (remember) {
                     AuthUtils.storeUserCookie(response, userCredentials);
                 } else {

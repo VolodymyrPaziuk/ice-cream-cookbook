@@ -25,7 +25,7 @@
             <li><a href="#">Apple</a></li>
             <li><a href="#">Sugar</a></li>
             <li><a href="#">Juice</a></li>
-            <li><a href="#">Bob</a></li>
+            <li><a onclick="addToList();" href="#">Bob</a></li>
             <li><a href="#">Candy</a></li>
             <li><a href="#">Pineapple</a></li>
         </ul>
@@ -33,6 +33,11 @@
 
 
         <script>
+            var list
+            function addToList() {
+                
+            }
+
             function myFunction() {
                 var input, filter, ul, li, a, i, txtValue;
                 input = document.getElementById('myInput');

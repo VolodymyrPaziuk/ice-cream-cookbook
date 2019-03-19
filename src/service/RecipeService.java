@@ -33,8 +33,9 @@ public class RecipeService implements RecipeDAO {
 
     @Override
     public List<Recipe> getAll() {
-        String query = "SELECT * FROM recipes";
-        List<Recipe> listRecipes = new ArrayList<Recipe>();
+        String query = "SELECT id,name,description,cook_time,prep_time FROM recipes";
+
+        List<Recipe> listRecipes = new ArrayList<>();
         try {
             Statement statement = DBConnection.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -44,13 +45,10 @@ public class RecipeService implements RecipeDAO {
                 recipe.setId(resultSet.getInt("id"));
                 recipe.setName(resultSet.getString("name"));
                 recipe.setDescription(resultSet.getString("description"));
-                recipe.setCookingTime(resultSet.getInt("cookingTime"));
-                recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+                recipe.setCookingTime(resultSet.getInt("cook_time"));
+                recipe.setPreparationTime(resultSet.getInt("prep_time"));
                 listRecipes.add(recipe);
-
             }
-            statement.close();
-            resultSet.close();
         } catch (SQLException e) {
             System.out.println("Cant read list of recipes from DB");
         }
@@ -68,7 +66,7 @@ public class RecipeService implements RecipeDAO {
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setInt(5, user_id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Recipe recipe = new Recipe();
                 recipe.setId(resultSet.getInt("id"));
                 recipe.setName(resultSet.getString("name"));
@@ -115,7 +113,6 @@ public class RecipeService implements RecipeDAO {
 
     @Override
     public void update(Recipe recipe) {
-
 
     }
 
