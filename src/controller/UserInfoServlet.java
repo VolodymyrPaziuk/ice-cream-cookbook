@@ -4,10 +4,8 @@ import connection.AuthUtils;
 import constants.Path;
 import entity.User;
 import entity.UserCredentials;
-import service.UserCredentialsService;
 import service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +32,7 @@ public class UserInfoServlet extends HttpServlet {
         }
 
 
-         user = userService.getUser(loginedUserCredentials.getId());
+        user = userService.getUser(loginedUserCredentials.getId());
 
         System.out.println("User " + user.toString());
         System.out.println("UserCredentials " + loginedUserCredentials.toString());
@@ -49,10 +47,8 @@ public class UserInfoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-         user.setName(request.getParameter("userName"));
-         user.setSurname(request.getParameter("userSurname"));
-        System.out.println("User in doPost");
-
+        user.setName(request.getParameter("userName"));
+        user.setSurname(request.getParameter("userSurname"));
         userService.update(user);
         response.sendRedirect(Path.HOME_PATH);
 

@@ -43,19 +43,19 @@
                         <div class="col-xl-4">
                             <p>Recipe name</p>
                         </div>
-                        <div class="col"><input type="text" value="${(recipe.getName())}" style="height: 30px;width: 100%;"></div>
+                        <div class="col"><input type="text" value="${(recipe.getName())}" name="recipeName" placeholder="Enter recipe name" style="height: 30px;width: 100%;"></div>
                     </div>
                     <div class="row" style="height: 30px;padding-bottom: 60px;">
                         <div class="col-xl-4">
                             <p>Preparation time</p>
                         </div>
-                        <div class="col"><input type="number" value="${(recipe.getPreparationTime())}" style="height: 30px;width: 100%;"></div>
+                        <div class="col"><input type="number" value="${(recipe.getPreparationTime())}"name="prepTime" placeholder="Enter preparation time"  style="height: 30px;width: 100%;"></div>
                     </div>
                     <div class="row" style="height: 30px;padding-bottom: 60px;">
                         <div class="col-xl-4">
                             <p>Cooking time</p>
                         </div>
-                        <div class="col"><input type="number" value="${(recipe.getCookingTime())}" style="height: 30px;width: 100%;"></div>
+                        <div class="col"><input type="number" value="${(recipe.getCookingTime())}" name="cookTime" placeholder="Enter cooking time" style="height: 30px;width: 100%;"></div>
                     </div>
                     <div class="row" style="height: 200px;padding-bottom: 60px;">
                         <div class="col-xl-4">

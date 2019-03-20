@@ -138,6 +138,26 @@ public class RecipeService implements RecipeDAO {
     }
 
     @Override
+    public void update(Recipe recipe, int user_id) {
+        String query = "UPDATE recipes SET name = ?, description = ?, cook_time = ?, prep_time = ?, user_id = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)){
+
+            preparedStatement.setString(1, recipe.getName());
+            preparedStatement.setString(2, recipe.getDescription());
+            preparedStatement.setInt(3, recipe.getCookingTime());
+            preparedStatement.setInt(4, recipe.getPreparationTime());
+            preparedStatement.setInt(5, user_id);
+            preparedStatement.setInt(6, recipe.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
     public void delete(Recipe recipe) {
 
     }

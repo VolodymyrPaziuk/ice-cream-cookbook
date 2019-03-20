@@ -17,6 +17,7 @@ public interface RecipeDAO {
     Recipe getById(int id);
 
     void update(Recipe recipe);
+    void update(Recipe recipe, int user_id);
 
     void delete(Recipe recipe);
 }

@@ -19,7 +19,7 @@ import java.io.IOException;
 @WebServlet(Path.EDIT_RECIPE_PATH)
 public class EditRecipeServlet extends HttpServlet {
     private RecipeService recipeService = new RecipeService();
-
+    Recipe recipe = new Recipe();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -27,7 +27,7 @@ public class EditRecipeServlet extends HttpServlet {
             System.out.println("user not logined");
             response.sendRedirect(request.getContextPath() + Path.LOGIN_PATH);
         } else {
-            Recipe recipe =  recipeService.getById(Integer.parseInt(request.getParameter("id")));
+             recipe =  recipeService.getById(Integer.parseInt(request.getParameter("id")));
             request.setAttribute("recipe",recipe);
             request.getRequestDispatcher(Path.EDIT_RECIPE_PAGE_JSP).forward(request, response);
         }
@@ -36,8 +36,18 @@ public class EditRecipeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        recipe.setName(request.getParameter("recipeName"));
+        recipe.setDescription(request.getParameter("instruction"));
+        recipe.setCookingTime(Integer.parseInt(request.getParameter("cookTime")));
+        recipe.setPreparationTime(Integer.parseInt(request.getParameter("prepTime")));
+        System.out.println("Recipe is:");
+        System.out.println(recipe.toString());
         HttpSession session = request.getSession();
-        UserCredentials loginedUser = AuthUtils.getLoginedUser(session);
+        UserCredentials user = AuthUtils.getLoginedUser(session);
+        System.out.println("user who updated");
+        System.out.println(user.toString());
+        recipeService.update(recipe, user.getId());
+        response.sendRedirect(Path.HOME_PATH);
 
 
     }
