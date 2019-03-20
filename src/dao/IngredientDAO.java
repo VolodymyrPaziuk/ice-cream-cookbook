@@ -7,13 +7,16 @@ import java.util.List;
 
 public interface IngredientDAO {
 
-    void add(Ingredient ingredient) ;
+    void add(Ingredient ingredient);
 
-    List<Ingredient> getAll() throws SQLException;
+    List<Ingredient> getAll();
 
-    Ingredient getById(int id) throws SQLException;
+    Ingredient getById(int id) ;
 
-    void update(Ingredient ingredient) throws SQLException;
+    List<Ingredient> getByRecipeId(int recipeId) ;
 
-    void delete(Ingredient ingredient) throws SQLException;
+
+    void update(Ingredient ingredient) ;
+
+    void delete(Ingredient ingredient) ;
 }

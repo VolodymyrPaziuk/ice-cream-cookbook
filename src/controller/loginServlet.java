@@ -42,8 +42,7 @@ public class loginServlet extends HttpServlet {
             if (userCredentials != null) {
                 System.out.println("Mutherfucker is logined");
 
-                HttpSession session = request.getSession();
-                AuthUtils.storeLoginedUser(session, userCredentials);
+                AuthUtils.storeLoginedUser(request.getSession(), userCredentials);
 
                 if (remember) {
                     AuthUtils.storeUserCookie(response, userCredentials);

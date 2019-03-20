@@ -10,7 +10,7 @@ public interface RecipeHasIngredientsDAO {
 
     List<RecipeHasIngredient> getAll();
 
-    List<RecipeHasIngredient> getByReciprId(int recipeId);
+    List<RecipeHasIngredient> getByRecipeId(int recipeId);
 
     void update(RecipeHasIngredient recipeHasIngredient);
 

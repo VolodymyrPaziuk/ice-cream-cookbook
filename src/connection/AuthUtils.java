@@ -11,18 +11,9 @@ import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 
 public class AuthUtils {
-    public static final String ATTRIBUTE_NAME_CONNECTION = "ATTRIBUTE_FOR_CONNECTION";
 
-    private static final String ATTRIBUTE_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
+    private static final String ATTRIBUTE_USER_NAME = "STORE_USER_IN_COOKIE_ATTRIBUTE";
 
-    public static void storeConnection(ServletRequest request, Connection conn) {
-        request.setAttribute(ATTRIBUTE_NAME_CONNECTION, conn);
-    }
-
-    public static Connection getStoredConnection(ServletRequest request) {
-        Connection conn = (Connection) request.getAttribute(ATTRIBUTE_NAME_CONNECTION);
-        return conn;
-    }
 
     public static boolean checkUserVerification(HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -39,7 +30,6 @@ public class AuthUtils {
     }
 
     public static void storeUserCookie(HttpServletResponse response, UserCredentials userCredentials) {
-        System.out.println("Store user cookie");
         Cookie userCookie = new Cookie(ATTRIBUTE_USER_NAME, userCredentials.getLogin());
         userCookie.setMaxAge( 60 * 60 * 1000);
         response.addCookie(userCookie);

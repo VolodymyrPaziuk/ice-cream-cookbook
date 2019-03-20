@@ -40,8 +40,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="gallery">
-                                    <div class="sp-wrap"><a href="assets/img/tech/image1.jpg">
-                                        <img class="img-fluid d-block mx-auto" src="assets/img/tech/image1.jpg"></a><a href="assets/img/tech/image1.jpg"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image1.jpg"></a><a href="assets/img/tech/image1.jpg"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image1.jpg"></a></div>
+                                    <div class="sp-wrap"><a href="assets/img/scenery/temp_image.jpg">
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/scenery/temp_image.jpg"></a><a href="assets/img/scenery/temp_image.jpg"><img class="img-fluid d-block mx-auto" src="assets/img/scenery/temp_image.jpg"></a><a href="assets/img/scenery/temp_image.jpg"><img class="img-fluid d-block mx-auto" src="assets/img/scenery/temp_image.jpg"></a></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -68,7 +68,7 @@
                                         elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <figure class="figure"><img class="img-fluid figure-img" src="assets/img/tech/image3.png"></figure>
+                                            <figure class="figure"><img class="img-fluid figure-img" src="assets/img/scenery/temp_image.jpg"></figure>
                                         </div>
                                         <div class="col-md-7">
                                             <h4>Lorem Ipsum</h4>
@@ -82,51 +82,12 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show specifications" role="tabpanel" id="specifications">
-                                    <div class="table-responsive table-bordered">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="stat">Display</td>
-                                                    <td>5.2"</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat">Camera</td>
-                                                    <td>12MP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat">RAM</td>
-                                                    <td>4GB</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat">OS</td>
-                                                    <td>iOS</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade show" role="tabpanel" id="reviews">
-                                    <div class="reviews">
-                                        <div class="review-item">
-                                            <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-empty.svg"></div>
-                                            <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="reviews">
-                                        <div class="review-item">
-                                            <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-empty.svg"></div>
-                                            <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="reviews">
-                                        <div class="review-item">
-                                            <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-empty.svg"></div>
-                                            <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </div>
+
+                                    <c:forEach var="ingredient" items="${ingredientList}">
+                                                    <p class="card-text"><c:out value="${ingredient.getName()}"/></p>
+                                    </c:forEach>
+
+
                                 </div>
                             </div>
                         </div>

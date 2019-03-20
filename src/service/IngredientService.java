@@ -3,6 +3,7 @@ package service;
 import connection.DBConnection;
 import dao.IngredientDAO;
 import entity.Ingredient;
+import entity.Recipe;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,11 +52,30 @@ public class IngredientService implements IngredientDAO {
 
     @Override
     public Ingredient getById(int id)  {
-        Ingredient ingredient = new Ingredient();
-        String query = "Select * from ingredients where id = ?";
-        
-
         return null;
+    }
+
+
+    @Override
+    public List<Ingredient> getByRecipeId(int recipeId)  {
+        List<Ingredient> ingredientsList = new ArrayList<>();
+        String query = "SELECT *  FROM ingredients JOIN recipes_has_ingredients ON ingredients.id = recipes_has_ingredients.ingredients_id WHERE recipes_id =?";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)){
+
+            preparedStatement.setInt(1, recipeId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Ingredient ingredient = new Ingredient();
+                ingredient.setId(resultSet.getInt("id"));
+                ingredient.setName(resultSet.getString("name"));
+                ingredientsList.add(ingredient);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ingredientsList;
     }
 
     @Override

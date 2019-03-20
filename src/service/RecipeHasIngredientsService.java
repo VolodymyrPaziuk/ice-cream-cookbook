@@ -29,7 +29,7 @@ public class RecipeHasIngredientsService implements RecipeHasIngredientsDAO {
     @Override
     public List<RecipeHasIngredient> getAll() {
 
-        String query = "SELECT id,name,description,cook_time,prep_time FROM recipes";
+        String query = "SELECT * FROM recipes_has_ingredients";
 
         List<RecipeHasIngredient> recipeHasIngredientsList = new ArrayList<>();
         try {
@@ -39,7 +39,7 @@ public class RecipeHasIngredientsService implements RecipeHasIngredientsDAO {
             while (resultSet.next()) {
                 RecipeHasIngredient recipeHasIngredients = new RecipeHasIngredient();
 
-                recipeHasIngredients.setRecipeId(resultSet.getInt("recipe_id"));
+                recipeHasIngredients.setRecipeId(resultSet.getInt("recipes_id"));
                 recipeHasIngredients.setRecipeId(resultSet.getInt("ingredients_id"));
                 recipeHasIngredientsList.add(recipeHasIngredients);
             }
@@ -51,8 +51,23 @@ public class RecipeHasIngredientsService implements RecipeHasIngredientsDAO {
     }
 
     @Override
-    public List<RecipeHasIngredient> getByReciprId(int recipeId) {
-        return null;
+    public List<RecipeHasIngredient> getByRecipeId(int recipeId) {
+        String query = "SELECT * FROM recipes_has_ingredients WHERE recipes_id = ?";
+
+        List<RecipeHasIngredient> listOfIngredients = new ArrayList<>();
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                RecipeHasIngredient recipeHasIngredients = new RecipeHasIngredient();
+                recipeHasIngredients.setRecipeId(resultSet.getInt("recipes_id"));
+                recipeHasIngredients.setRecipeId(resultSet.getInt("ingredients_id"));
+                listOfIngredients.add(recipeHasIngredients);
+            }
+        } catch (SQLException e) {
+            System.out.println("Cant read list of ingredients from DB");
+        }
+        return listOfIngredients;
     }
 
     @Override
