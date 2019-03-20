@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blog Post - Brand</title>
+    <title>Edit</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
@@ -30,6 +30,7 @@
 <main class="page blog-post">
     <section class="clean-block clean-post dark">
         <div class="container">
+
             <div class="block-content">
                 <div class="post-body">
                     <form action="/editRecipe" method="post">
@@ -60,8 +61,9 @@
                         <div class="col-xl-4">
                             <p>Description</p>
                         </div>
-                        <div class="col"><input type="text" value="${(recipe.getDescription())}" style="height: 190px;width: 100%;"></div>
+                        <div class="col"><input  type="text" value="${(recipe.getDescription())}"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"></div>
                     </div>
+                        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
                     </form>
                 </div>
             </div>
@@ -77,7 +79,7 @@
         </div>
     </div>
     <div class="footer-copyright">
-        <p>© 2018 vse sam production</p>
+        <p> 2019 vse sam production</p>
     </div>
 </footer>
 <script src="assets/js/jquery.min.js"></script>

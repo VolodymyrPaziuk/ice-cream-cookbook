@@ -18,11 +18,11 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#"><img src="assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="/cookbook"><img src="assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/cookbook">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/createRecipe">create</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/userInfo">settings</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">log out</a></li>
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            <p>© 2019 vse sam production</p>
+            <p> 2019 vse sam production</p>
         </div>
     </footer>
     <script src="assets/js/jquery.min.js"></script>

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet(Path.RECIPE_PATH)
 public class RecipeServlet extends HttpServlet {
-   RecipeService recipeService = new RecipeService();
+   private RecipeService recipeService = new RecipeService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

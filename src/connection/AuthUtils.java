@@ -1,5 +1,6 @@
 package connection;
 
+import constants.Path;
 import entity.UserCredentials;
 
 import javax.servlet.ServletRequest;
@@ -23,10 +24,10 @@ public class AuthUtils {
         return conn;
     }
 
-    //ToDo
-    public static boolean checkUserVerification(){
-
-        return true;
+    public static boolean checkUserVerification(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
+        return loginedUserCredentials != null;
     }
 
     public static void storeLoginedUser(HttpSession session, UserCredentials loginedUser) {

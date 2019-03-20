@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            <p>© 2019 vse sam production</p>
+            <p>2019 vse sam production</p>
         </div>
     </footer>
     <script src="assets/js/jquery.min.js"></script>
