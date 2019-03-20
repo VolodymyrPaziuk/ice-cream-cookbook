@@ -35,6 +35,7 @@ public class RegistrationServlet extends HttpServlet {
         String username = request.getParameter(Attribute.NAME);
         String userSurname = request.getParameter(Attribute.SURNAME);
 
+
         if ((login != null) && !(login.isEmpty())
                 && (password != null) && !(password.isEmpty())) {
 

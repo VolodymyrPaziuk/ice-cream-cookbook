@@ -41,7 +41,7 @@
                         <input class="form-control item" type="text" placeholder="Enter Name" id = "name" name="name" ></div>
 
                     <div class="form-group"><label for="surname">Surname</label>
-                        <input class="form-control item" type="text" placeholder="Enter Surname" id = "surname" name="surName" >
+                        <input class="form-control item" type="text" placeholder="Enter Surname" id = "surname" name="surname" >
 
                     </div><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div></form>
             </div>

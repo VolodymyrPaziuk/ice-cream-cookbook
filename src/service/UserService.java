@@ -15,7 +15,7 @@ public class UserService implements UserDAO {
 
     @Override
     public void add(User user, int credId) {
-        String query = "INSERT INTO users (name, surname, users_credentials_id) VALUES (?,?,?,?)";
+        String query = "INSERT INTO users (name, surname, users_credentials_id) VALUES (?,?,?)";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)){
 

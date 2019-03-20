@@ -56,7 +56,6 @@ public class RecipeService implements RecipeDAO {
         return listRecipes;
     }
 
-    //ToDo: add implementation
     @Override
     public List<Recipe> getAllByUserId(int user_id) {
         String query = "SELECT * FROM recipes WHERE user_id = ?";
@@ -110,6 +109,28 @@ public class RecipeService implements RecipeDAO {
         return null;
     }
 
+    @Override
+    public Recipe getById(int id) {
+        String query = "Select * from recipes where id = ? ";
+
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setCookingTime(resultSet.getInt("cook_time"));
+                recipe.setPreparationTime(resultSet.getInt("prep_time"));
+                return recipe;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public void update(Recipe recipe) {
