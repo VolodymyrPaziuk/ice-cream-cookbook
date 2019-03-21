@@ -28,5 +28,9 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="jquery.validate" level="application" />
     <orderEntry type="library" name="baguetteBox" level="application" />
+    <orderEntry type="library" name="jquery-3.3.1" level="application" />
+    <orderEntry type="library" name="materialize" level="application" />
+    <orderEntry type="library" name="commons-fileupload-1.2.2" level="project" />
+    <orderEntry type="library" name="commons-io-2.4" level="project" />
   </component>
 </module>

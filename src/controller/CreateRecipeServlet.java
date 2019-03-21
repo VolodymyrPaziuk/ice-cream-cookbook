@@ -38,6 +38,7 @@ public class CreateRecipeServlet extends HttpServlet {
 
         int userId = AuthUtils.getLoginedUser(session).getId();
         String recipeName =  request.getParameter("recipeName");
+
         int prepTime =  Integer.parseInt(request.getParameter("prepTime"));
         int cookTime =  Integer.parseInt(request.getParameter("cookTime"));
         String instruction =  request.getParameter("instruction");

@@ -42,7 +42,7 @@
 
                     </ul><c:forEach var="recipe" items="${recipes}">
                     <div class="col-md-6 col-lg-4">
-                        <div class="card"><img class="card-img-top w-100 d-block" src="assets/img/scenery/temp_image.jpg">
+                        <div class="card"><img class="card-img-top w-100 d-block" src=<c:out value="${recipe.getImage()}"/>>
                             <div class="card-body">
                                 <h4 class="card-title"><c:out value="${recipe.getName()}"/></h4>
                                 <p class="card-text"><c:out value="${recipe.getDescription()}"/></p>

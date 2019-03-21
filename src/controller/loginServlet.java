@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/login")
@@ -30,34 +29,30 @@ public class loginServlet extends HttpServlet {
 
         String rememberMeStr = request.getParameter("rememberMe");
         boolean remember = "Y".equals(rememberMeStr);
-
         UserCredentials userCredentials = null;
         boolean isLogined = false;
 
-        if (request.getParameter(Attribute.LOGIN) != null && request.getParameter(Attribute.PASSWORD) != null) {
+        //  if (checkLoginValidation(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD))) {
 
-            UserCredentialsService userCredentialsService = new UserCredentialsService();
-            userCredentials = userCredentialsService.getUserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
+        UserCredentialsService userCredentialsService = new UserCredentialsService();
+        userCredentials = userCredentialsService.getUserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
 
-            if (userCredentials != null) {
-                System.out.println("Mutherfucker is logined");
+        if (userCredentials != null) {
+            System.out.println("Mutherfucker is logined");
 
-                AuthUtils.storeLoginedUser(request.getSession(), userCredentials);
+            AuthUtils.storeLoginedUser(request.getSession(), userCredentials);
 
-                if (remember) {
-                    AuthUtils.storeUserCookie(response, userCredentials);
-                } else {
-                    AuthUtils.deleteUserCookie(response);
-                }
-
-                response.sendRedirect(Path.HOME_PATH);
-
+            if (remember) {
+                AuthUtils.storeUserCookie(response, userCredentials);
             } else {
-                request.setAttribute(Attribute.ERROR, "Invalid login or password");
-                request.getRequestDispatcher(Path.LOGIN_PAGE_JSP).forward(request, response);
-
-
+                AuthUtils.deleteUserCookie(response);
             }
+
+            response.sendRedirect(Path.HOME_PATH);
+
+        } else {
+            request.setAttribute(Attribute.ERROR, "Invalid login or password");
+            request.getRequestDispatcher(Path.LOGIN_PAGE_JSP).forward(request, response);
 
         }
 
@@ -65,5 +60,11 @@ public class loginServlet extends HttpServlet {
     }
 
 
+    private boolean checkLoginValidation(String login, String password) {
+        return login != null && password != null
+                && login.length() > 3 && password.length() > 3;
+
+
+    }
 }
 

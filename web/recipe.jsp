@@ -40,8 +40,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="gallery">
-                                    <div class="sp-wrap"><a href="assets/img/scenery/temp_image.jpg">
-                                        <img class="img-fluid d-block mx-auto" src="assets/img/scenery/temp_image.jpg"></a><a href="assets/img/scenery/temp_image.jpg"><img class="img-fluid d-block mx-auto" src="assets/img/scenery/temp_image.jpg"></a><a href="assets/img/scenery/temp_image.jpg"><img class="img-fluid d-block mx-auto" src="assets/img/scenery/temp_image.jpg"></a></div>
+                                    <div class="sp-wrap"><a href=<c:out value="${recipe.getImage()}"/>>
+                                        <img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>></a><a href=<c:out value="${recipe.getImage()}"/>><img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>></a><a href=<c:out value="${recipe.getImage()}"/>><img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>></a></div>
                                 </div>
                             </div>
                             <div class="col-md-6">

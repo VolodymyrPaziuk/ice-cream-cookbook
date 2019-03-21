@@ -6,6 +6,7 @@ public class Recipe {
     private String description;
     private int cookingTime;
     private int preparationTime;
+    private String image;
 
     public  Recipe(){}
     public Recipe(String name,  int cookingTime, int preparationTime, String description) {
@@ -13,6 +14,14 @@ public class Recipe {
         this.cookingTime = cookingTime;
         this.preparationTime = preparationTime;
         this.description = description;
+    }
+
+    public Recipe(String name,  int cookingTime, int preparationTime, String description, String image) {
+        this.name = name;
+        this.cookingTime = cookingTime;
+        this.preparationTime = preparationTime;
+        this.description = description;
+        this.image = image;
     }
 
 
@@ -56,14 +65,13 @@ public class Recipe {
         this.preparationTime = preparationTime;
     }
 
-  //  public int getUserId() {
-  //      return userId;
-   // }
+    public String getImage() {
+        return image;
+    }
 
-  //  public void setUserId(int userId) {
-  //      this.userId = userId;
-   // }
-
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {
@@ -73,6 +81,7 @@ public class Recipe {
                 ", description='" + description + '\'' +
                 ", cookingTime=" + cookingTime +
                 ", preparationTime=" + preparationTime +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

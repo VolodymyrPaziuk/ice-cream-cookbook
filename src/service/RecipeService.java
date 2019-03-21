@@ -10,12 +10,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+@SuppressWarnings("Duplicates")
 public class RecipeService implements RecipeDAO {
 
     @Override
     public void add(Recipe recipe, int user_id) {
-        String query = "INSERT INTO recipes (name, description, cook_time, prep_time, user_id) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO recipes (name, description, cook_time, prep_time,image_url, user_id) VALUES (?,?,?,?,?,?)";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
 
@@ -23,7 +23,8 @@ public class RecipeService implements RecipeDAO {
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setInt(3, recipe.getCookingTime());
             preparedStatement.setInt(4, recipe.getPreparationTime());
-            preparedStatement.setInt(5, user_id);
+            preparedStatement.setString(5, recipe.getImage());
+            preparedStatement.setInt(6, user_id);
 
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
@@ -33,7 +34,7 @@ public class RecipeService implements RecipeDAO {
 
     @Override
     public List<Recipe> getAll() {
-        String query = "SELECT id,name,description,cook_time,prep_time FROM recipes";
+        String query = "SELECT id,name,description,cook_time,prep_time,image_url FROM recipes";
 
         List<Recipe> listRecipes = new ArrayList<>();
         try {
@@ -47,6 +48,7 @@ public class RecipeService implements RecipeDAO {
                 recipe.setDescription(resultSet.getString("description"));
                 recipe.setCookingTime(resultSet.getInt("cook_time"));
                 recipe.setPreparationTime(resultSet.getInt("prep_time"));
+                recipe.setImage(resultSet.getString("image_url"));
                 listRecipes.add(recipe);
             }
         } catch (SQLException e) {
@@ -72,6 +74,7 @@ public class RecipeService implements RecipeDAO {
                 recipe.setDescription(resultSet.getString("description"));
                 recipe.setCookingTime(resultSet.getInt("cookingTime"));
                 recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+                recipe.setImage(resultSet.getString("image_url"));
                 recipeList.add(recipe);
             }
 
@@ -99,8 +102,7 @@ public class RecipeService implements RecipeDAO {
                 recipe.setDescription(resultSet.getString("description"));
                 recipe.setCookingTime(resultSet.getInt("cookingTime"));
                 recipe.setPreparationTime(resultSet.getInt("preparationTime"));
-
-                System.out.println(recipe.toString() + " h");
+                recipe.setImage(resultSet.getString("image_url"));
                 return recipe;
             }
         } catch (SQLException ex) {
@@ -124,6 +126,7 @@ public class RecipeService implements RecipeDAO {
                 recipe.setDescription(resultSet.getString("description"));
                 recipe.setCookingTime(resultSet.getInt("cook_time"));
                 recipe.setPreparationTime(resultSet.getInt("prep_time"));
+                recipe.setImage(resultSet.getString("image_url"));
                 return recipe;
             }
         } catch (SQLException ex) {
@@ -139,7 +142,7 @@ public class RecipeService implements RecipeDAO {
 
     @Override
     public void update(Recipe recipe, int user_id) {
-        String query = "UPDATE recipes SET name = ?, description = ?, cook_time = ?, prep_time = ?, user_id = ? WHERE id = ?";
+        String query = "UPDATE recipes SET name = ?, description = ?, cook_time = ?, prep_time = ?, image_url = ?, user_id = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)){
 
@@ -148,7 +151,8 @@ public class RecipeService implements RecipeDAO {
             preparedStatement.setInt(3, recipe.getCookingTime());
             preparedStatement.setInt(4, recipe.getPreparationTime());
             preparedStatement.setInt(5, user_id);
-            preparedStatement.setInt(6, recipe.getId());
+            preparedStatement.setString(6,recipe.getImage());
+            preparedStatement.setInt(7, recipe.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

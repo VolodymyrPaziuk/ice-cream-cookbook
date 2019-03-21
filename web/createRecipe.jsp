@@ -15,7 +15,9 @@
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><a class="navbar-brand logo" href="/"><img src="assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a class="navbar-brand logo" href="/"><img src="assets/img/logo.png"></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/cookbook">Home</a></li>
@@ -33,37 +35,56 @@
 
             <div class="block-content">
                 <div class="post-body">
-                    <form action="/createRecipe" method="post">
-                    <h3>Create recipe</h3>
-                    <div class="post-info"><span>By John Smith</span></div>
+                    <form action="" method="post"  enctype="multipart/form-data">
+                        <h3>Create recipe</h3>
+                        <div class="post-info"><span>By John Travolta</span></div>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae
-                        leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <div class="row" style="height: 30px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Recipe name</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor
+                            in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
+                            urna, dignissim nec auctor in, mattis vitae
+                            leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
+                            auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <div class="row" style="height: 30px;padding-bottom: 60px;">
+                            <div class="col-xl-4">
+                                <p>Recipe name</p>
+                            </div>
+                            <div class="col"><input class="ion-android-radio-button-off" name="image_uploads"
+                                                    type="file"
+                                                    accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"></div>
                         </div>
-                        <div class="col"><input type="text" name="recipeName" placeholder="Enter recipe name" style="height: 30px;width: 100%;"></div>
-                    </div>
-                    <div class="row" style="height: 30px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Preparation time</p>
+
+                        <div class="row" style="height: 30px;padding-bottom: 60px;">
+                            <div class="col-xl-4">
+                                <p>Recipe name</p>
+                            </div>
+                            <div class="col"><input type="text" name="recipeName" placeholder="Enter recipe name"
+                                                    style="height: 30px;width: 100%;"></div>
                         </div>
-                        <div class="col"><input type="number" name="prepTime" placeholder="Enter preparation time"  style="height: 30px;width: 100%;"></div>
-                    </div>
-                    <div class="row" style="height: 30px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Cooking time</p>
+                        <div class="row" style="height: 30px;padding-bottom: 60px;">
+                            <div class="col-xl-4">
+                                <p>Preparation time</p>
+                            </div>
+                            <div class="col"><input type="number" name="prepTime" placeholder="Enter preparation time"
+                                                    style="height: 30px;width: 100%;"></div>
                         </div>
-                        <div class="col"><input type="number"  name="cookTime" placeholder="Enter cooking time" style="height: 30px;width: 100%;"></div>
-                    </div>
-                    <div class="row" style="height: 200px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Description</p>
+                        <div class="row" style="height: 30px;padding-bottom: 60px;">
+                            <div class="col-xl-4">
+                                <p>Cooking time</p>
+                            </div>
+                            <div class="col"><input type="number" name="cookTime" placeholder="Enter cooking time"
+                                                    style="height: 30px;width: 100%;"></div>
                         </div>
-                        <div class="col"><input  type="text"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"></div>
-                    </div>
-                        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+                        <div class="row" style="height: 200px;padding-bottom: 60px;">
+                            <div class="col-xl-4">
+                                <p>Description</p>
+                            </div>
+                            <div class="col"><textarea type="text" name="instruction" placeholder="Write instruction"
+                                                       style="height: 190px;width: 100%;"> </textarea></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Create</button>
+                        </div>
                     </form>
                 </div>
             </div>
