@@ -14,6 +14,8 @@ public interface RecipeDAO {
 
     Recipe getByUserId(int user_id);
 
+    List<Recipe> getRecipesByIngredients(List<String> ingredients);
+
     Recipe getById(int id);
 
     void update(Recipe recipe);

@@ -45,7 +45,7 @@
                         <div class="card"><img class="card-img-top w-100 d-block" src=<c:out value="${recipe.getImage()}"/>>
                             <div class="card-body">
                                 <h4 class="card-title"><c:out value="${recipe.getName()}"/></h4>
-                                <p class="card-text"><c:out value="${recipe.getDescription()}"/></p>
+                                <p class="card-text"><c:out value="${recipe.getDescription().substring(1,2)}"/></p>
                             </div>
                             <div><button class="btn btn-outline-primary btn-sm"  type="button" onclick="location.href = '/recipe?id=${recipe.getId()}';" >Learn More</button></div>
 

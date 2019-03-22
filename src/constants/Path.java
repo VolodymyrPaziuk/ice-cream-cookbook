@@ -15,7 +15,7 @@ public class Path {
     public static final String EDIT_RECIPE_PAGE_JSP = "/editRecipe.jsp";
 
     public static final String SEARCH_RECIPE_PATH = "/search";
-    public static final String SEARCH_RECIPE_PAGE_JSP = "searchRecipe.jsp";
+    public static final String SEARCH_RECIPE_PAGE_JSP = "IngredTest.jsp";
 
     public static final String RECIPE_PAGE_JSP = "recipe.jsp";
     public static final String RECIPE_PATH = "/recipe";

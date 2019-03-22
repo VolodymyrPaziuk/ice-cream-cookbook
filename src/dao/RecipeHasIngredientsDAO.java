@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Ingredient;
 import entity.RecipeHasIngredient;
 
 import java.util.List;

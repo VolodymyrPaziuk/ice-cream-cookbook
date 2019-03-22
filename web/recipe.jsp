@@ -41,7 +41,8 @@
                             <div class="col-md-6">
                                 <div class="gallery">
                                     <div class="sp-wrap"><a href=<c:out value="${recipe.getImage()}"/>>
-                                        <img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>></a><a href=<c:out value="${recipe.getImage()}"/>><img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>></a><a href=<c:out value="${recipe.getImage()}"/>><img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>></a></div>
+                                        <img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/>>
+                                    </a></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -64,11 +65,10 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane active fade show description" role="tabpanel" id="description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <p><c:out value="${recipe.getDescription()}"/></p>
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <figure class="figure"><img class="img-fluid figure-img" src="assets/img/scenery/temp_image.jpg"></figure>
+                                            <figure class="figure"><img class="img-fluid figure-img" src=<c:out value="${recipe.getImage()}"/>></figure>
                                         </div>
                                         <div class="col-md-7">
                                             <h4>Lorem Ipsum</h4>

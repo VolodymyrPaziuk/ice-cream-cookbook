@@ -1,7 +1,9 @@
 package service;
 
+import com.sun.deploy.util.StringUtils;
 import connection.DBConnection;
 import dao.RecipeHasIngredientsDAO;
+import entity.Ingredient;
 import entity.RecipeHasIngredient;
 
 import java.sql.PreparedStatement;
@@ -25,6 +27,8 @@ public class RecipeHasIngredientsService implements RecipeHasIngredientsDAO {
             ex.printStackTrace();
         }
     }
+
+
 
     @Override
     public List<RecipeHasIngredient> getAll() {

@@ -1,5 +1,6 @@
 package service;
 
+import com.sun.deploy.util.StringUtils;
 import connection.DBConnection;
 import dao.RecipeDAO;
 import entity.Recipe;
@@ -84,6 +85,26 @@ public class RecipeService implements RecipeDAO {
 
 
         return recipeList;
+    }
+
+    @Override
+    public List<Recipe> getRecipesByIngredients(List<String> ingredients) {
+            List<Recipe> recipeList = new ArrayList<>();
+            String query= "SELECT * FROM recipes JOIN recipes_has_ingredients ON (recipes.id=recipes_has_ingredients.recipes_id) WHERE ingredients_id in (4,7)  GROUP BY recipes.id";
+            try {
+                Statement statement = DBConnection.getConnection().createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+
+                while (resultSet.next()) {
+
+
+                }
+            } catch (SQLException e) {
+                System.out.println("Cant read list of ingredients from DB");
+            }
+            return recipeList;
+
+
     }
 
     @Override
