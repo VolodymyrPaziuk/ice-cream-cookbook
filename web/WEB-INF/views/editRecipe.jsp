@@ -65,7 +65,7 @@
                         </div>
                         <div class="col"><textarea  type="text" value="${(recipe.getDescription())}"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"> ${(recipe.getDescription())}</textarea></div>
                     </div>
-                        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+                        <div class="form-group"><button class="btn btn-success btn-block" type="submit">Save</button></div>
                     </form>
                 </div>
             </div>

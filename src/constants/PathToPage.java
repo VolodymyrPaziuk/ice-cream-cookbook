@@ -11,6 +11,7 @@ public class PathToPage {
     public static final String RECIPE_PATH = "/recipe";
     public static final String HOME_PATH = "/cookbook";
     public static final String CREATE_RECIPE_PATH = "/createRecipe";
+    public static final String DELETE_RECIPE_PATH = "/deleteRecipe";
     public static final String USER_INFO = "/userInfo";
     public static final String TEST_PATH = "/test";
 

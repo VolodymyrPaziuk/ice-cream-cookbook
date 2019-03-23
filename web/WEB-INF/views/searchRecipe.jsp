@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="../../assets/css/Password-Strenght-Checker---Ambrodu.css">
     <link rel="stylesheet" href="../../assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="../../assets/css/checkboxStyle.css">
+
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
@@ -23,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
             </ul>
@@ -42,9 +44,12 @@
                 <form action="/search" id="vehicles" method="post">
 
                     <c:forEach var="ingredient" items="${ingredientList}">
-                        <input type="checkbox"  name="ingredient" value="${ingredient.getId()}" ><c:out value="${ingredient.getName()}"/></input>
-                        <br>
+                        <label>
+                        <input type="checkbox"  name="ingredient" value="${ingredient.getId()}" ></input>
+                            <span>${ingredient.getName()}</span>
+                        </label>
                     </c:forEach>
+
                     <input type="hidden" name="selectedIngredients" id="selectedIngredients"/>
                     <input type="submit" value="Submit" onClick="processIngredients()">
 

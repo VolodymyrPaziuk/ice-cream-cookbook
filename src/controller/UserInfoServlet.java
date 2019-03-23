@@ -17,22 +17,23 @@ import java.io.IOException;
 
 @WebServlet(PathToPage.USER_INFO)
 public class UserInfoServlet extends HttpServlet {
-
     User user = new User();
     UserService userService = new UserService();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
+        System.out.println("doGet");
+        HttpSession session = request.getSession();
+        System.out.println("getsession");
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
         if (loginedUserCredentials == null) {
+            System.out.println("user = null");
             response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
             return;
         }
 
-
+        System.out.println("beforeuser");
         user = userService.getUser(loginedUserCredentials.getId());
 
         System.out.println("User " + user.toString());
@@ -48,6 +49,7 @@ public class UserInfoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("doPost");
         user.setName(request.getParameter("userName"));
         user.setSurname(request.getParameter("userSurname"));
         userService.update(user);

@@ -51,8 +51,8 @@
                                 <div class="info">
                                     <h3><c:out value="${recipe.getName()}"/></h3>
 
-                                    <div class="price"></div><button class="btn btn-primary"  type="button" onclick="location.href = '/editRecipe?id=${recipe.getId()}';" ><i ></i>Edit</button>
-                                    <div class="price"></div><button class="btn btn-primary"  type="button" onclick="location.href = '/deleteRecipe?id=${recipe.getId()}';" ><i ></i>Delete</button>
+                                    <div class="price"></div><button class="btn btn-primary "   type="button" onclick="location.href = '/editRecipe?id=${recipe.getId()}';" ><i ></i>Edit</button>
+                                                             <button class="btn btn-dark"  type="button" onclick="location.href = '/deleteRecipe?id=${recipe.getId()}';" ><i ></i>Delete</button>
                                     <div class="summary">
                                         <p><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></p>
                                     </div>

@@ -44,9 +44,8 @@ public class EditRecipeServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserCredentials user = AuthUtils.getLoginedUser(session);
 
-        //Todo: show user who updated
-        System.out.println("user who updated");
-        System.out.println(user.toString());
+
+        System.out.println("Updated by " + user.getLogin());
 
         recipeService.update(recipe, user.getId());
         response.sendRedirect(PathToPage.HOME_PATH);

@@ -24,7 +24,7 @@
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
                 </ul>
@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Settings</h2>
-                    <p>Youcan update your info</p>
+                    <p>You can update your info</p>
                 </div>
                 <form action="${PathToPage.USER_INFO}" method="post">
 
