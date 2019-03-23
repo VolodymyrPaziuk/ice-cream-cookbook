@@ -73,8 +73,8 @@ public class RecipeService implements RecipeDAO {
                 recipe.setId(resultSet.getInt("id"));
                 recipe.setName(resultSet.getString("name"));
                 recipe.setDescription(resultSet.getString("description"));
-                recipe.setCookingTime(resultSet.getInt("cookingTime"));
-                recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+                recipe.setCookingTime(resultSet.getInt("cook_time"));
+                recipe.setPreparationTime(resultSet.getInt("prep_time"));
                 recipe.setImage(resultSet.getString("image_url"));
                 recipeList.add(recipe);
             }
@@ -88,23 +88,62 @@ public class RecipeService implements RecipeDAO {
     }
 
     @Override
-    public List<Recipe> getRecipesByIngredients(List<String> ingredients) {
+    public List<Recipe> getRecipesWithIngredients(String ingredients) {
             List<Recipe> recipeList = new ArrayList<>();
-            String query= "SELECT * FROM recipes JOIN recipes_has_ingredients ON (recipes.id=recipes_has_ingredients.recipes_id) WHERE ingredients_id in (4,7)  GROUP BY recipes.id";
+            int ingredientsCount =  ingredients.split(",").length;
+            String query= "SELECT * FROM recipes JOIN recipes_has_ingredients ON (recipes.id=recipes_has_ingredients.recipes_id)" +
+                    " WHERE ingredients_id in (" +ingredients + ")    GROUP BY recipes_has_ingredients.recipes_id " +
+                    "HAVING COUNT(*) = "+ingredientsCount+" ;";
             try {
                 Statement statement = DBConnection.getConnection().createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
 
                 while (resultSet.next()) {
-
-
+                    Recipe recipe = new Recipe();
+                    recipe.setId(resultSet.getInt("id"));
+                    recipe.setName(resultSet.getString("name"));
+                    recipe.setDescription(resultSet.getString("description"));
+                    recipe.setPreparationTime(resultSet.getInt("prep_time"));
+                    recipe.setCookingTime(resultSet.getInt("cook_time"));
+                    recipe.setImage(resultSet.getString("image_url"));
+                    recipeList.add(recipe);
                 }
             } catch (SQLException e) {
-                System.out.println("Cant read list of ingredients from DB");
+                System.out.println("Cant read list of recipes from DB");
             }
             return recipeList;
 
 
+    }
+
+    @Override
+    public List<Recipe> getRecipesByIngredients(String ingredients) {
+        List<Recipe> recipeList = new ArrayList<>();
+        int ingredientsCount =  ingredients.split(",").length;
+        String query = "SELECT  * FROM recipes JOIN recipes_has_ingredients ON (recipes.id=recipes_has_ingredients.recipes_id)" +
+                " WHERE ingredients_id in (" +ingredients + ")" +
+                " and  recipes_id in (select recipes_id from recipes_has_ingredients group by recipes_id" +
+                " having count(ingredients_id)= " + ingredientsCount +" )group by recipes_id;";
+
+
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id"));
+                recipe.setName(resultSet.getString("name"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setPreparationTime(resultSet.getInt("prep_time"));
+                recipe.setCookingTime(resultSet.getInt("cook_time"));
+                recipe.setImage(resultSet.getString("image_url"));
+                recipeList.add(recipe);
+            }
+        } catch (SQLException e) {
+            System.out.println("Cant read list of recipes from DB");
+        }
+        return recipeList;
     }
 
     @Override
@@ -121,8 +160,8 @@ public class RecipeService implements RecipeDAO {
                 recipe.setId(resultSet.getInt("id"));
                 recipe.setName(resultSet.getString("name"));
                 recipe.setDescription(resultSet.getString("description"));
-                recipe.setCookingTime(resultSet.getInt("cookingTime"));
-                recipe.setPreparationTime(resultSet.getInt("preparationTime"));
+                recipe.setCookingTime(resultSet.getInt("cook_time"));
+                recipe.setPreparationTime(resultSet.getInt("prep_time"));
                 recipe.setImage(resultSet.getString("image_url"));
                 return recipe;
             }

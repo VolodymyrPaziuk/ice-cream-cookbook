@@ -32,8 +32,6 @@ public class CookBookServlet extends HttpServlet {
 
         } else {
             List<Recipe> recipeList = recipeService.getAll();
-            System.out.println("recipe list");
-            System.out.println(recipeList);
             request.setAttribute("recipes", recipeList);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.HOME_PAGE_JSP);

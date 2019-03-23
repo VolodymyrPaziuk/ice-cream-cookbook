@@ -25,10 +25,12 @@ public class RecipeServlet extends HttpServlet {
 
         Recipe recipe =  recipeService.getById(Integer.parseInt(request.getParameter("id")));
         List<Ingredient> ingredientList = ingredientService.getByRecipeId(recipe.getId());
+
         request.setAttribute("recipe",recipe);
         request.setAttribute("ingredientList", ingredientList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.RECIPE_PAGE_JSP);
         requestDispatcher.forward(request, response);
+
 
     }
 

@@ -1,75 +1,104 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Search recipe</title>
-    <link href="searchRecipeCSS.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Create</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/Password-Strenght-Checker---Ambrodu.css">
+    <link rel="stylesheet" href="assets/css/smoothproducts.css">
 </head>
 <body>
-<div class="container">
-    <form action="/userInfo" method="post">
-
-
-
-
-        <input type="text" id="myInput"  onkeypress="addToArray()" onkeyup="myFunction()" placeholder="Search for ingredients..">
-
-        <ul id="myUL">
-
-            <li><a href="#">Ice</a></li>
-            <li><a href="#">Cream</a></li>
-            <li><a href="#">Vanilla</a></li>
-            <li><a href="#">Apple</a></li>
-            <li><a href="#">Sugar</a></li>
-            <li><a href="#">Juice</a></li>
-            <li><a onclick="addToList();" href="#">Bob</a></li>
-            <li><a href="#">Candy</a></li>
-            <li><a href="#">Pineapple</a></li>
-        </ul>
-
-
-
-        <script>
-            var list
-            function addToList() {
-                
-            }
-
-            function myFunction() {
-                var input, filter, ul, li, a, i, txtValue;
-                input = document.getElementById('myInput');
-                filter = input.value.toUpperCase();
-                ul = document.getElementById("myUL");
-                li = ul.getElementsByTagName('li');
-
-
-                for (i = 0; i < li.length; i++) {
-                    a = li[i].getElementsByTagName("a")[0];
-                    txtValue = a.textContent || a.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        li[i].style.display = "";
-                    } else {
-                        li[i].style.display = "none";
-                    }
-                }
-            }
-
-        </script>
-
-
-
-
-
-        <div class="row">
-            <input type="submit" value="Submit">
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="/"><img src="assets/img/logo.png"></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/cookbook">Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/createRecipe">create</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/userInfo">settings</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">log out</a></li>
+            </ul>
         </div>
+    </div>
+</nav>
+
+<main class="page blog-post">
+    <section class="clean-block payment-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Search recipe</h2>
+                <p>Here you can find recipes by ingredients</p>
+            </div>
+            <ul class="ks-cboxtags">
+                <form action="/search" id="vehicles" method="post">
+
+                    <c:forEach var="ingredient" items="${ingredientList}">
+                        <input type="checkbox"  name="ingredient" value="${ingredient.getId()}" ><c:out value="${ingredient.getName()}"/></input>
+                        <br>
+                    </c:forEach>
+                    <input type="hidden" name="selectedIngredients" id="selectedIngredients"/>
+                    <input type="submit" value="Submit" onClick="processIngredients()">
 
 
 
-    </form>
-</div>
+                </form>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer class="page-footer dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p> 2019 vse sam production</p>
+    </div>
+</footer>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="assets/js/smoothproducts.min.js"></script>
+<script src="assets/js/theme.js"></script>
+
+<script>
+    function processIngredients()
+    {
+        var ingredientTypes = document.getElementsByName("ingredient");
+        var selectedIngredientTypes = [];
+        for (var i = 0; i < ingredientTypes.length; i++) {
+            if (ingredientTypes[i].checked) {
+                selectedIngredientTypes.push(ingredientTypes[i].value);
+            }
+        }
+
+        var hiddenSelectedIngredients = document.getElementById("selectedIngredients");
+        hiddenSelectedIngredients.value = selectedIngredientTypes.join(",");
+
+        // jQuery
+        /* $("#selectedVehicles").value(selectedVehicleTypes.join(",")); */
+
+        var form = document.getElementById("ingredients");
+        form.submit();
+
+        //jQuery
+        /* $("#vehicles").submit(); */
+    }
+</script>
+
+
 </body>
 </html>
