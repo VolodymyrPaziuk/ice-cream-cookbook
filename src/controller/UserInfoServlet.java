@@ -1,7 +1,8 @@
 package controller;
 
 import connection.AuthUtils;
-import constants.Path;
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.User;
 import entity.UserCredentials;
 import service.UserService;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(Path.USER_INFO)
+@WebServlet(PathToPage.USER_INFO)
 public class UserInfoServlet extends HttpServlet {
 
     User user = new User();
@@ -27,7 +28,7 @@ public class UserInfoServlet extends HttpServlet {
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
         if (loginedUserCredentials == null) {
-            response.sendRedirect(request.getContextPath() + Path.LOGIN_PATH);
+            response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
             return;
         }
 
@@ -39,7 +40,7 @@ public class UserInfoServlet extends HttpServlet {
 
         request.setAttribute("user", user);
 
-        getServletContext().getRequestDispatcher(Path.USER_INFO_JSP).forward(request, response);
+        getServletContext().getRequestDispatcher(PathToJsp.USER_INFO_JSP).forward(request, response);
 
 
     }
@@ -50,7 +51,7 @@ public class UserInfoServlet extends HttpServlet {
         user.setName(request.getParameter("userName"));
         user.setSurname(request.getParameter("userSurname"));
         userService.update(user);
-        response.sendRedirect(Path.HOME_PATH);
+        response.sendRedirect(PathToPage.HOME_PATH);
 
     }
 }

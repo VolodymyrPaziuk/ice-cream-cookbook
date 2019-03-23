@@ -2,7 +2,8 @@ package controller;
 
 import connection.AuthUtils;
 import constants.Attribute;
-import constants.Path;
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.UserCredentials;
 import service.UserCredentialsService;
 
@@ -14,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet(PathToPage.LOGIN_PATH)
 public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.LOGIN_PAGE_JSP);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP);
         requestDispatcher.forward(request, response);
 
 
@@ -48,11 +49,11 @@ public class loginServlet extends HttpServlet {
                 AuthUtils.deleteUserCookie(response);
             }
 
-            response.sendRedirect(Path.HOME_PATH);
+            response.sendRedirect(PathToPage.HOME_PATH);
 
         } else {
             request.setAttribute(Attribute.ERROR, "Invalid login or password");
-            request.getRequestDispatcher(Path.LOGIN_PAGE_JSP).forward(request, response);
+            request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP).forward(request, response);
 
         }
 

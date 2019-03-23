@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="constants.PathToPage" %>
 <!DOCTYPE html>
 <html>
 
@@ -19,10 +20,10 @@
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/cookbook">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/createRecipe">create</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/userInfo">settings</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">log out</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
                 </ul>
         </div>
         </div>

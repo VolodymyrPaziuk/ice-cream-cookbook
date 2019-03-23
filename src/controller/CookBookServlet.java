@@ -1,7 +1,9 @@
 package controller;
 
 import connection.AuthUtils;
-import constants.Path;
+
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.Recipe;
 import entity.UserCredentials;
 import service.RecipeService;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(Path.HOME_PATH)
+@WebServlet(PathToPage.HOME_PATH)
 public class CookBookServlet extends HttpServlet {
     RecipeService recipeService = new RecipeService();
 
@@ -28,13 +30,13 @@ public class CookBookServlet extends HttpServlet {
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
         if (loginedUserCredentials == null) {
-            response.sendRedirect(request.getContextPath() + Path.LOGIN_PATH);
+            response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
 
         } else {
             List<Recipe> recipeList = recipeService.getAll();
             request.setAttribute("recipes", recipeList);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.HOME_PAGE_JSP);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.HOME_PAGE_JSP);
             requestDispatcher.forward(request, response);
         }
 

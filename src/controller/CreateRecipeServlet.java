@@ -2,7 +2,8 @@ package controller;
 
 import connection.AuthUtils;
 import constants.Attribute;
-import constants.Path;
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.Recipe;
 import entity.UserCredentials;
 import org.apache.commons.fileupload.FileItem;
@@ -21,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-@WebServlet(Path.CREATE_RECIPE_PATH)
+@WebServlet(PathToPage.CREATE_RECIPE_PATH)
 public class CreateRecipeServlet extends HttpServlet {
     private RecipeService recipeService = new RecipeService();
 
@@ -32,10 +33,10 @@ public class CreateRecipeServlet extends HttpServlet {
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
         if (loginedUserCredentials == null) {
-            response.sendRedirect( Path.LOGIN_PATH);
+            response.sendRedirect( PathToPage.LOGIN_PATH);
             return;
         }
-        request.getRequestDispatcher(Path.CREATE_RECIPE_PAGE_JSP).forward(request, response);
+        request.getRequestDispatcher(PathToJsp.CREATE_RECIPE_PAGE_JSP).forward(request, response);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class CreateRecipeServlet extends HttpServlet {
                     if (item.getSize() > 26214400) {
                         message = "photo too big";
                         request.setAttribute("message", message);
-                        request.getRequestDispatcher(Path.CREATE_RECIPE_PAGE_JSP).forward(request, response);
+                        request.getRequestDispatcher(PathToJsp.CREATE_RECIPE_PAGE_JSP).forward(request, response);
                         return;
                     }
 
@@ -109,7 +110,7 @@ public class CreateRecipeServlet extends HttpServlet {
             recipeService.add(recipe, AuthUtils.getLoginedUser(session).getId());
 
         }
-        response.sendRedirect(Path.HOME_PATH);
+        response.sendRedirect(PathToPage.HOME_PATH);
 
     }
 

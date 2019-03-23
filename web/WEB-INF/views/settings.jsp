@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="constants.PathToPage" %>
 
 <html>
 
@@ -18,14 +19,14 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="/cookbook"><img src="../../assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href=${PathToPage.HOME_PATH}><img src="../../assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/cookbook">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/createRecipe">create</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/userInfo">settings</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">log out</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
                 </ul>
         </div>
         </div>
@@ -37,7 +38,7 @@
                     <h2 class="text-info">Settings</h2>
                     <p>Youcan update your info</p>
                 </div>
-                <form action="/userInfo" method="post">
+                <form action="${PathToPage.USER_INFO}" method="post">
 
                     <div class="form-group"><label>Name</label> <input class="form-control" type="text"value="${(user.getName())}" id="uname" name="userName" placeholder="Enter name"></div>
                     <div class="form-group"><label>Surname</label> <input class="form-control" type="text"value="${(user.getSurname())}" id="uSurname" name="userSurname" placeholder="Enter surname"></div>

@@ -1,3 +1,4 @@
+<%@ page import="constants.PathToPage" %>
 <!DOCTYPE html>
 <html>
 
@@ -14,11 +15,11 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="/"><img src="../../assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href=${PathToPage.LOGIN_PATH}><img src="../../assets/img/logo.png"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">login</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGIN_PATH}>login</a></li>
               </ul>
         </div>
         </div>

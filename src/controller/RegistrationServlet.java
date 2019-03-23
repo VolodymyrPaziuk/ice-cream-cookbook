@@ -1,7 +1,8 @@
 package controller;
 
 import constants.Attribute;
-import constants.Path;
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.User;
 import entity.UserCredentials;
 import service.UserCredentialsService;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(Path.REGISTRATION_PATH)
+@WebServlet(PathToPage.REGISTRATION_PATH)
 public class RegistrationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +25,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(Path.REGISTRATION_PAGE).forward(request, response);
+        request.getRequestDispatcher(PathToJsp.REGISTRATION_PAGE_JSP).forward(request, response);
     }
 
     @Override
@@ -47,9 +48,9 @@ public class RegistrationServlet extends HttpServlet {
 
                 userService.add(new User(username,userSurname), userCredentials.getId());
 
-                response.sendRedirect(Path.LOGIN_PATH);
+                response.sendRedirect(PathToPage.LOGIN_PATH);
             } else {
-                request.getRequestDispatcher(Path.REGISTRATION_PAGE).forward(request, response);
+                request.getRequestDispatcher(PathToJsp.REGISTRATION_PAGE_JSP).forward(request, response);
             }
 
         }

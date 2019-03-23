@@ -1,6 +1,5 @@
 package connection;
 
-import constants.Path;
 import entity.UserCredentials;
 
 import javax.servlet.ServletRequest;

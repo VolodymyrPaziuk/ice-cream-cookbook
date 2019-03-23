@@ -1,3 +1,4 @@
+<%@ page import="constants.PathToPage" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/amsify.suggestags.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/amsify.suggestags.css">
 
     <!-- Amsify Plugin -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script type="text/javascript" src="assets/js/jquery.amsify.suggestags.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.amsify.suggestags.js"></script>
 </head>
 
 

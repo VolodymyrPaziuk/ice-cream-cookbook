@@ -2,6 +2,7 @@
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="constants.PathToPage" %>
 <html>
 
 <head>
@@ -23,7 +24,7 @@
         <div
                 class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/registration">registration</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.REGISTRATION_PATH}>registration</a></li>
             </ul>
         </div>
     </div>

@@ -3,6 +3,7 @@
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="constants.PathToPage" %>
 <html>
 <head>
     <title>About user</title>
@@ -10,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="/userInfo" method="post">
+    <form action="${PathToPage.HOME_PATH}" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="uname">Name </label>

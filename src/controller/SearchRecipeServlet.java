@@ -1,12 +1,14 @@
 package controller;
 
 import connection.AuthUtils;
-import constants.Path;
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.Ingredient;
 import entity.Recipe;
 import entity.UserCredentials;
 import service.IngredientService;
 import service.RecipeService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(Path.SEARCH_RECIPE_PATH)
+@WebServlet(PathToPage.SEARCH_RECIPE_PATH)
 public class SearchRecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,13 +30,13 @@ public class SearchRecipeServlet extends HttpServlet {
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
         if (loginedUserCredentials == null) {
-            response.sendRedirect(request.getContextPath() + Path.LOGIN_PATH);
+            response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
 
         } else {
             IngredientService ingredientService = new IngredientService();
             List<Ingredient> ingredientList = ingredientService.getAll();
             request.setAttribute("ingredientList", ingredientList);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.SEARCH_RECIPE_PAGE_JSP);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.SEARCH_RECIPE_PAGE_JSP);
             requestDispatcher.forward(request, response);
         }
 
@@ -56,7 +58,7 @@ public class SearchRecipeServlet extends HttpServlet {
 
 
         request.setAttribute("recipes", recipeList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.SEARCH_RESULT_PAGE_JSP);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.SEARCH_RESULT_PAGE_JSP);
         requestDispatcher.forward(request, response);
 
     }

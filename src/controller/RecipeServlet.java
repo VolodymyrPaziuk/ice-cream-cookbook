@@ -1,6 +1,7 @@
 package controller;
 
-import constants.Path;
+import constants.PathToJsp;
+import constants.PathToPage;
 import entity.Ingredient;
 import entity.Recipe;
 import service.IngredientService;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(Path.RECIPE_PATH)
+@WebServlet(PathToPage.RECIPE_PATH)
 public class RecipeServlet extends HttpServlet {
    private RecipeService recipeService = new RecipeService();
     private IngredientService ingredientService = new IngredientService();
@@ -28,7 +29,7 @@ public class RecipeServlet extends HttpServlet {
 
         request.setAttribute("recipe",recipe);
         request.setAttribute("ingredientList", ingredientList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(Path.RECIPE_PAGE_JSP);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.RECIPE_PAGE_JSP);
         requestDispatcher.forward(request, response);
 
 
