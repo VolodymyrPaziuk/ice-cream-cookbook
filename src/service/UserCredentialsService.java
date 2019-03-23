@@ -102,6 +102,8 @@ public class UserCredentialsService implements UserCredentialsDAO {
                 userCredentials.setId(resultSet.getInt(Attribute.ID));
                 userCredentials.setLogin(resultSet.getString(Attribute.LOGIN));
                 userCredentials.setPassword(resultSet.getString(Attribute.PASSWORD));
+                userCredentials.setAdmin(resultSet.getBoolean(Attribute.IS_ADMIN));
+
                 System.out.println(userCredentials.toString() + " h");
 
                 return userCredentials;

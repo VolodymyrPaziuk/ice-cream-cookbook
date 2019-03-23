@@ -21,6 +21,7 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
             </ul>
@@ -36,7 +37,7 @@
                 <div class="post-body">
                     <form action="/editRecipe" method="post">
                     <h3>Edit recipe</h3>
-                    <div class="post-info"><span>By John Smith</span></div>
+                    <div class="post-info"><span>You are admin</span></div>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae
                         leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -62,7 +63,7 @@
                         <div class="col-xl-4">
                             <p>Description</p>
                         </div>
-                        <div class="col"><input  type="text" value="${(recipe.getDescription())}"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"></div>
+                        <div class="col"><textarea  type="text" value="${(recipe.getDescription())}"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"> ${(recipe.getDescription())}</textarea></div>
                     </div>
                         <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
                     </form>

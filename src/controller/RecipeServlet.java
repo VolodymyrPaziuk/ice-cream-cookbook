@@ -1,9 +1,11 @@
 package controller;
 
+import connection.AuthUtils;
 import constants.PathToJsp;
 import constants.PathToPage;
 import entity.Ingredient;
 import entity.Recipe;
+import entity.UserCredentials;
 import service.IngredientService;
 import service.RecipeService;
 
@@ -13,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,8 +32,16 @@ public class RecipeServlet extends HttpServlet {
 
         request.setAttribute("recipe",recipe);
         request.setAttribute("ingredientList", ingredientList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.RECIPE_PAGE_JSP);
-        requestDispatcher.forward(request, response);
+
+        HttpSession session = request.getSession();
+        UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
+
+        if (loginedUserCredentials.isAdmin()){
+            request.getRequestDispatcher(PathToJsp.RECIPE_ADMIN_PAGE_JSP).forward(request, response);
+        }else {
+            request.getRequestDispatcher(PathToJsp.RECIPE_PAGE_JSP).forward(request, response);
+        }
+
 
 
     }

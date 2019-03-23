@@ -4,14 +4,17 @@ public class UserCredentials {
     private int id;
     private String login;
     private String password;
+    private boolean isAdmin;
 
     public UserCredentials() {
     }
 
-    public UserCredentials(int id, String login, String password) {
+
+    public UserCredentials(int id, String login, String password, boolean isAdmin) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
     public UserCredentials(String login, String password) {
         this.login = login;
@@ -38,12 +41,21 @@ public class UserCredentials {
         this.password = password;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
         return "UserCredentials{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }

@@ -21,10 +21,11 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link"  href=${PathToPage.HOME_PATH}>Home</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link"  href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link"  href=${PathToPage.USER_INFO}>settings</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link"  href=${PathToPage.LOGOUT_PATH}>log out</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
             </ul>
         </div>
     </div>
@@ -40,25 +41,20 @@
                         <h3>Create recipe</h3>
                         <div class="post-info"><span>By John Travolta</span></div>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor
-                            in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-                            urna, dignissim nec auctor in, mattis vitae
-                            leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
-                            auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <div class="row" style="height: 30px;padding-bottom: 60px;">
                             <div class="col-xl-4">
                                 <p>Recipe name</p>
                             </div>
                             <div class="col"><input class="ion-android-radio-button-off" name="image_uploads"
                                                     type="file"
-                                                    accept=".jpg, .jpeg, .png" style="margin: 5%;margin-left: 0;"></div>
-                        </div>
+                                                    accept=".jpg, .jpeg, .png" style="height: 30px;width: 100%;"></div>
+                            </div>
 
                         <div class="row" style="height: 30px;padding-bottom: 60px;">
                             <div class="col-xl-4">
                                 <p>Recipe name</p>
                             </div>
-                            <div class="col"><input type="text" name="recipeName" placeholder="Enter recipe name"
+                            <div class="col"><input type="text" name="recipeName" minlength="2"  placeholder="Enter recipe name"
                                                     style="height: 30px;width: 100%;"></div>
                         </div>
                         <div class="row" style="height: 30px;padding-bottom: 60px;">
@@ -79,7 +75,7 @@
                             <div class="col-xl-4">
                                 <p>Description</p>
                             </div>
-                            <div class="col"><textarea type="text" name="instruction" placeholder="Write instruction"
+                            <div class="col"><textarea type="text" name="instruction" minlength="10" placeholder="Write instruction"
                                                        style="height: 190px;width: 100%;"> </textarea></div>
                         </div>
 

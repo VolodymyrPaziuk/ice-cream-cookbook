@@ -31,9 +31,10 @@ public class loginServlet extends HttpServlet {
         String rememberMeStr = request.getParameter("rememberMe");
         boolean remember = "Y".equals(rememberMeStr);
         UserCredentials userCredentials = null;
-        boolean isLogined = false;
 
         //  if (checkLoginValidation(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD))) {
+
+
 
         UserCredentialsService userCredentialsService = new UserCredentialsService();
         userCredentials = userCredentialsService.getUserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));

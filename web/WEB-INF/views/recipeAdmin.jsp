@@ -22,6 +22,7 @@
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
@@ -50,7 +51,8 @@
                                 <div class="info">
                                     <h3><c:out value="${recipe.getName()}"/></h3>
 
-
+                                    <div class="price"></div><button class="btn btn-primary"  type="button" onclick="location.href = '/editRecipe?id=${recipe.getId()}';" ><i ></i>Edit</button>
+                                    <div class="price"></div><button class="btn btn-primary"  type="button" onclick="location.href = '/deleteRecipe?id=${recipe.getId()}';" ><i ></i>Delete</button>
                                     <div class="summary">
                                         <p><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></p>
                                     </div>

@@ -42,11 +42,11 @@
 
                 <div class="form-group">
                     <label for="inputUsername" >Username</label>
-                    <input class="form-control" type="text" id="inputUsername"name="login" placeholder="Enter Login"></div>
+                    <input class="form-control" type="text" id="inputUsername"name="login"  placeholder="Enter Login"></div>
 
                 <div class="form-group">
                     <label for="inputPassword">Password</label>
-                    <input class="form-control" type="password" id="inputPassword" name="password"
+                    <input class="form-control" type="password"  id="inputPassword" name="password"
                            placeholder="Password">
                 </div>
 

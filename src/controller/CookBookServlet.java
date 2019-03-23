@@ -26,18 +26,23 @@ public class CookBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
-        if (loginedUserCredentials == null) {
-            response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
+        List<Recipe> recipeList = recipeService.getAll();
+        request.setAttribute("recipes", recipeList);
 
+        if(loginedUserCredentials== null){
+            System.out.println("User Nulll");
+            request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP).forward(request, response);
+            return;
+        }
+
+        if (loginedUserCredentials.isAdmin()) {
+            System.out.println("Is ADMIIINNN");
+            request.getRequestDispatcher(PathToJsp.HOME_ADMIN_PAGE_JSP).forward(request, response);
         } else {
-            List<Recipe> recipeList = recipeService.getAll();
-            request.setAttribute("recipes", recipeList);
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.HOME_PAGE_JSP);
-            requestDispatcher.forward(request, response);
+            System.out.println("NotAdmin");
+             request.getRequestDispatcher(PathToJsp.HOME_PAGE_JSP).forward(request, response);
         }
 
 
