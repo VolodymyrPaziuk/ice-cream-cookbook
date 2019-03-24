@@ -202,7 +202,9 @@ public class RecipeService implements RecipeDAO {
 
     @Override
     public void update(Recipe recipe, int user_id) {
-        String query = "UPDATE recipes SET name = ?, description = ?, cook_time = ?, prep_time = ?, image_url = ?, user_id = ? WHERE id = ?";
+        System.out.println("in update method" + recipe.toString());
+        System.out.println("recipe" + user_id);
+        String query = "UPDATE recipes SET name = ?, description = ?, cook_time = ?, prep_time = ?, image_url = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
 
@@ -210,9 +212,8 @@ public class RecipeService implements RecipeDAO {
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setInt(3, recipe.getCookingTime());
             preparedStatement.setInt(4, recipe.getPreparationTime());
-            preparedStatement.setInt(5, user_id);
-            preparedStatement.setString(6, recipe.getImage());
-            preparedStatement.setInt(7, recipe.getId());
+            preparedStatement.setString(5, recipe.getImage());
+            preparedStatement.setInt(6, user_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -223,9 +224,10 @@ public class RecipeService implements RecipeDAO {
 
     @Override
     public void delete(int recipeId) {
-        String query = "DELETE FROM recipes where recipes.id = ? ";
+        String query = "DELETE  FROM recipes where recipes.id = ? ";
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1,recipeId);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

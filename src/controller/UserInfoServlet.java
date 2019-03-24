@@ -22,25 +22,18 @@ public class UserInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("doGet");
         HttpSession session = request.getSession();
-        System.out.println("getsession");
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
         if (loginedUserCredentials == null) {
-            System.out.println("user = null");
             response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
             return;
         }
 
-        System.out.println("beforeuser");
         user = userService.getUser(loginedUserCredentials.getId());
-
-        System.out.println("User " + user.toString());
-        System.out.println("UserCredentials " + loginedUserCredentials.toString());
-
+        boolean b = true;
+        request.setAttribute("isAdmin",b);
         request.setAttribute("user", user);
-
         getServletContext().getRequestDispatcher(PathToJsp.USER_INFO_JSP).forward(request, response);
 
 

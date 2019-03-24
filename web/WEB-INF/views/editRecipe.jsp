@@ -35,12 +35,17 @@
 
             <div class="block-content">
                 <div class="post-body">
-                    <form action="/editRecipe" method="post">
+                    <form action="/editRecipe" method="post" enctype="multipart/form-data">
                     <h3>Edit recipe</h3>
                     <div class="post-info"><span>You are admin</span></div>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae
-                        leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p >  <img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/> > </p>
+
+                        <div class="col"><input class="ion-android-radio-button-off" name="image_uploads"
+                                                type="file"
+                                                accept=".jpg, .jpeg, .png" style="height: 30px;width: 100%;"></div>
+
+
                     <div class="row" style="height: 30px;padding-bottom: 60px;">
                         <div class="col-xl-4">
                             <p>Recipe name</p>

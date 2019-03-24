@@ -33,7 +33,7 @@
                 </div>
                 <form action="registration" method="POST">
                     <div class="form-group"><label for="login">Username</label>
-                        <input class="form-control item" type="text" id = "login" minlength="5" placeholder="Enter login" name="login" required>
+                        <input class="form-control item" type="text" id = "login" minlength="5" placeholder="Enter login" name="login" required></div>
 
                     <div class="form-group"><label for="password">Password</label>
                         <input class="form-control item" type="password" id = "password" minlength="5"placeholder="Enter Password" name="password" required></div>
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            <p>© 2018 vse sam production</p>
+            <p>2019 vse sam production</p>
         </div>
     </footer>
     <script src="../../assets/js/jquery.min.js"></script>

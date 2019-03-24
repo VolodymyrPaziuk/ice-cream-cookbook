@@ -86,11 +86,13 @@
 
                                     <c:forEach var="ingredient" items="${ingredientList}">
                                                     <p class="card-text"><c:out value="${ingredient.getName()}"/></p>
+
+
                                     </c:forEach>
 
 
                                 </div>
-                            </div>
+                            </div>r
                         </div>
                     </div>
 

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="../../assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="../../assets/css/checkboxStyle.css">
 </head>
 
 <body>
@@ -87,8 +88,14 @@
                                 <div class="tab-pane fade show specifications" role="tabpanel" id="specifications">
 
                                     <c:forEach var="ingredient" items="${ingredientList}">
-                                                    <p class="card-text"><c:out value="${ingredient.getName()}"/></p>
+
+                                        <label>
+                                            <input type="checkbox"  name="ingredient" value="${ingredient.getId()}" ></input>
+                                            <span>${ingredient.getName()}</span>
+                                        </label>
+                                        <br>
                                     </c:forEach>
+
 
 
                                 </div>
