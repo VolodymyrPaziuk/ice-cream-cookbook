@@ -28,39 +28,41 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String rememberMeStr = request.getParameter("rememberMe");
-        boolean remember = "Y".equals(rememberMeStr);
+        String rememberMeStr = request.getParameter(Attribute.REMEMBER_ME);
+        boolean remember = "yes".equals(rememberMeStr);
         UserCredentials userCredentials = null;
 
-        //  if (checkLoginValidation(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD))) {
+        String login = request.getParameter(Attribute.LOGIN);
+        String password = request.getParameter(Attribute.PASSWORD);
+
+        if (checkLoginValidation(login, password)) {
 
 
+            UserCredentialsService userCredentialsService = new UserCredentialsService();
+            userCredentials = userCredentialsService.getUserCredentials(login,password);
 
-        UserCredentialsService userCredentialsService = new UserCredentialsService();
-        userCredentials = userCredentialsService.getUserCredentials(request.getParameter(Attribute.LOGIN), request.getParameter(Attribute.PASSWORD));
+            if (userCredentials != null) {
+                AuthUtils.storeLoginedUser(request.getSession(), userCredentials);
+                if (remember) {
+                    AuthUtils.storeUserCookie(response, userCredentials);
+                } else {
+                    AuthUtils.deleteUserCookie(response);
+                }
 
-        if (userCredentials != null) {
-            System.out.println("Mutherfucker is logined");
+                response.sendRedirect(PathToPage.HOME_PATH);
 
-            AuthUtils.storeLoginedUser(request.getSession(), userCredentials);
-
-            if (remember) {
-                AuthUtils.storeUserCookie(response, userCredentials);
             } else {
-                AuthUtils.deleteUserCookie(response);
+                request.setAttribute(Attribute.ERROR, "Invalid login or password");
+                request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP).forward(request, response);
+
             }
 
-            response.sendRedirect(PathToPage.HOME_PATH);
 
-        } else {
-            request.setAttribute(Attribute.ERROR, "Invalid login or password");
+        }else {
             request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP).forward(request, response);
-
         }
 
-
     }
-
 
     private boolean checkLoginValidation(String login, String password) {
         return login != null && password != null

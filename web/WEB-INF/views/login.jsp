@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="checkbox" name="rememberMe" value="Y"> Remember me<BR>
+                    <input type="checkbox" name="rememberMe" value="yes"> Remember me<BR>
                 </div>
 
 

@@ -15,6 +15,8 @@ public class Attribute {
     public static final String PREPARATION_TIME = "prepTime";
     public static final String COOKING_TIME = "cookTime";
     public static final String INSTRUCTION = "instruction";
+    public static final String REMEMBER_ME = "rememberMe";
+
 
 
 

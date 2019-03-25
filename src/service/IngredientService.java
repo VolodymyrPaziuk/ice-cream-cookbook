@@ -3,7 +3,6 @@ package service;
 import connection.DBConnection;
 import dao.IngredientDAO;
 import entity.Ingredient;
-import entity.Recipe;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

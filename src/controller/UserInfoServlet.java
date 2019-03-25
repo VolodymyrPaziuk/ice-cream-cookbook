@@ -17,8 +17,8 @@ import java.io.IOException;
 
 @WebServlet(PathToPage.USER_INFO)
 public class UserInfoServlet extends HttpServlet {
-    User user = new User();
-    UserService userService = new UserService();
+    private User user = new User();
+    private UserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -41,7 +41,7 @@ public class UserInfoServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
 
         System.out.println("doPost");
         user.setName(request.getParameter("userName"));

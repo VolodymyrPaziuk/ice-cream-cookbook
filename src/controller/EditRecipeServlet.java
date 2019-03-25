@@ -44,22 +44,7 @@ public class EditRecipeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       /* recipe.setName(request.getParameter("recipeName"));
-        recipe.setDescription(request.getParameter("instruction"));
-        recipe.setCookingTime(Integer.parseInt(request.getParameter("cookTime")));
-        recipe.setPreparationTime(Integer.parseInt(request.getParameter("prepTime")));
-
-        HttpSession session = request.getSession();
-        UserCredentials user = AuthUtils.getLoginedUser(session);
-
-
-        System.out.println("Updated by " + user.getLogin());
-
-        recipeService.update(recipe, user.getId());
-        response.sendRedirect(PathToPage.HOME_PATH);*/
-
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-        HttpSession session = request.getSession();
         String recipeName = null;
         int preparationTime = 0;
         int cookingTime = 0;

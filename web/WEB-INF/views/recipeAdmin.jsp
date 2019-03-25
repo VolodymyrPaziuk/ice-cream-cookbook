@@ -51,7 +51,8 @@
                             <div class="col-md-6">
                                 <div class="info">
                                     <h2><c:out value="${recipe.getName()}"/></h2>
-
+                                    <div class="price"></div><button class="btn btn-primary "   type="button" onclick="location.href = '/editRecipe?id=${recipe.getId()}';" ><i ></i>Edit</button>
+                                    <button class="btn btn-dark"  type="button" onclick="location.href = '/deleteRecipe?id=${recipe.getId()}';" ><i ></i>Delete</button>
 
                                     <div class="summary">
                                         <p><h5><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></h5></p>
@@ -76,7 +77,7 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane active fade show description" role="tabpanel" id="description">
-                                    <p><c:out value="${recipe.getDescription()}"/></p>
+                                    <p style="white-space: pre-wrap;"><c:out value="${recipe.getDescription()}"/></p>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <figure class="figure"><img class="img-fluid figure-img" src=<c:out value="${recipe.getImage()}"/>></figure>

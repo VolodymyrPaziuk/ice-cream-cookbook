@@ -25,16 +25,13 @@ import java.util.List;
 public class SearchRecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
-        UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
-
-        if (loginedUserCredentials == null) {
+        if (AuthUtils.getLoginedUser(request.getSession()) == null) {
             response.sendRedirect(request.getContextPath() + PathToPage.LOGIN_PATH);
-
         } else {
             IngredientService ingredientService = new IngredientService();
             List<Ingredient> ingredientList = ingredientService.getAll();
+
             request.setAttribute("ingredientList", ingredientList);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.SEARCH_RECIPE_PAGE_JSP);
             requestDispatcher.forward(request, response);
@@ -47,7 +44,6 @@ public class SearchRecipeServlet extends HttpServlet {
 
 
         String ingredients = request.getParameter("selectedIngredients");
-        System.out.println("ingredients =  " + ingredients);
 
         RecipeService recipeService = new RecipeService();
         List<Recipe>  recipeList = new ArrayList<>();

@@ -20,8 +20,8 @@ import java.io.IOException;
 public class RegistrationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    UserCredentialsService userCredentialsService = new UserCredentialsService();
-    UserService userService = new UserService();
+    private UserCredentialsService userCredentialsService = new UserCredentialsService();
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,8 +37,8 @@ public class RegistrationServlet extends HttpServlet {
         String userSurname = request.getParameter(Attribute.SURNAME);
 
 
-        if ((login != null) && !(login.isEmpty())
-                && (password != null) && !(password.isEmpty())) {
+        if ((login != null) && (login.length()> 5)
+                && (password != null) && (password.length()> 5) ){
 
             UserCredentials userCredentials = new UserCredentials(login, password);
             userCredentialsService.add(userCredentials);
@@ -53,6 +53,8 @@ public class RegistrationServlet extends HttpServlet {
                 request.getRequestDispatcher(PathToJsp.REGISTRATION_PAGE_JSP).forward(request, response);
             }
 
+        }else {
+            response.sendRedirect(PathToPage.REGISTRATION_PATH);
         }
 
     }

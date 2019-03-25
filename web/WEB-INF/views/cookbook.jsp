@@ -28,7 +28,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
                 </ul>
-        </div>
+        </div>s
         </div>
     </nav>
     <main class="page service-page">
