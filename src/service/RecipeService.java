@@ -94,6 +94,8 @@ public class RecipeService implements RecipeDAO {
         String query = "SELECT * FROM recipes JOIN recipes_has_ingredients ON (recipes.id=recipes_has_ingredients.recipes_id)" +
                 " WHERE ingredients_id in (" + ingredients + ")    GROUP BY recipes_has_ingredients.recipes_id " +
                 "HAVING COUNT(*) = " + ingredientsCount + " ;";
+
+
         try {
             Statement statement = DBConnection.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -120,11 +122,11 @@ public class RecipeService implements RecipeDAO {
     public List<Recipe> getRecipesByIngredients(String ingredients) {
         List<Recipe> recipeList = new ArrayList<>();
         int ingredientsCount = ingredients.split(",").length;
-        String query = "SELECT  * FROM recipes JOIN recipes_has_ingredients ON (recipes.id=recipes_has_ingredients.recipes_id)" +
-                " WHERE ingredients_id in (" + ingredients + ")" +
-                " and  recipes_id in (select recipes_id from recipes_has_ingredients group by recipes_id" +
-                " having count(ingredients_id)= " + ingredientsCount + " )group by recipes_id;";
 
+        String query = " SELECT * from recipes r INNER JOIN recipes_has_ingredients ri on r.id=ri.recipes_id  " +
+                "INNER JOIN ingredients i on i.id=ri.ingredients_id  " +
+                "GROUP BY r.id  HAVING COUNT(DISTINCT i.id)="+ingredientsCount+" AND  " +
+                "COUNT(DISTINCT case when i.id IN ("+ingredients+")  then i.name end)="+ingredientsCount+";";
 
         try {
             Statement statement = DBConnection.getConnection().createStatement();

@@ -31,7 +31,8 @@ public class UserInfoServlet extends HttpServlet {
         }
 
         user = userService.getUser(loginedUserCredentials.getId());
-        boolean b = true;
+        boolean b = loginedUserCredentials.isAdmin();
+
         request.setAttribute("isAdmin",b);
         request.setAttribute("user", user);
         getServletContext().getRequestDispatcher(PathToJsp.USER_INFO_JSP).forward(request, response);

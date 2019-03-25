@@ -46,6 +46,7 @@
 
                     </div><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div></form>
             </div>
+
         </section>
     </main>
     <footer class="page-footer dark">

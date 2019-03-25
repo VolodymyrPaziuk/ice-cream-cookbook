@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="../../assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="../../assets/css/checkboxStyle.css">
 </head>
 
 <body>
@@ -48,11 +49,19 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="info">
-                                    <h3><c:out value="${recipe.getName()}"/></h3>
+                                    <h2><c:out value="${recipe.getName()}"/></h2>
 
 
                                     <div class="summary">
-                                        <p><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></p>
+                                        <p><h5><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></h5></p>
+                                    </div>
+
+
+                                    <div class="summary">
+                                        <p><h5>Preparation time:     <c:out value="${recipe.getPreparationTime()}"/> min</h5></p>
+                                    </div>
+                                    <div class="summary">
+                                        <p  ><h5>Cooking time:     <c:out value="${recipe.getCookingTime()}"/> min</h5></p>
                                     </div>
                                 </div>
                             </div>
@@ -85,14 +94,17 @@
                                 <div class="tab-pane fade show specifications" role="tabpanel" id="specifications">
 
                                     <c:forEach var="ingredient" items="${ingredientList}">
-                                                    <p class="card-text"><c:out value="${ingredient.getName()}"/></p>
 
-
+                                        <label>
+                                            <input type="checkbox"  name="ingredient" value="${ingredient.getId()}" ></input>
+                                            <span>${ingredient.getName()}</span>
+                                        </label>
+                                        <br>
                                     </c:forEach>
 
 
                                 </div>
-                            </div>r
+                            </div>
                         </div>
                     </div>
 

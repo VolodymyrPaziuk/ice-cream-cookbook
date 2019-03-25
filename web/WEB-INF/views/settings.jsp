@@ -25,6 +25,11 @@
                 <ul class="nav navbar-nav ml-auto">
 
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
+
+                    <c:if test = "${sessionScope.loginedUser.isAdmin()}">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                    </c:if>
+
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
@@ -44,7 +49,7 @@
                     <div class="form-group"><label>Name</label> <input class="form-control" type="text"value="${(user.getName())}" id="uname" name="userName" placeholder="Enter name"></div>
                     <div class="form-group"><label>Surname</label> <input class="form-control" type="text"value="${(user.getSurname())}" id="uSurname" name="userSurname" placeholder="Enter surname"></div>
 
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+                    <div class="form-group"><button class="btn btn-success btn-block" type="submit">Save</button></div>
 
 
                 </form>

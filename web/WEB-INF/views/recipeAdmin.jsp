@@ -50,12 +50,19 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="info">
-                                    <h3><c:out value="${recipe.getName()}"/></h3>
+                                    <h2><c:out value="${recipe.getName()}"/></h2>
 
-                                    <div class="price"></div><button class="btn btn-primary "   type="button" onclick="location.href = '/editRecipe?id=${recipe.getId()}';" ><i ></i>Edit</button>
-                                                             <button class="btn btn-dark"  type="button" onclick="location.href = '/deleteRecipe?id=${recipe.getId()}';" ><i ></i>Delete</button>
+
                                     <div class="summary">
-                                        <p><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></p>
+                                        <p><h5><c:out value="${recipe.getDescription().substring(0,recipe.getDescription().indexOf('.'))}"/></h5></p>
+                                    </div>
+
+
+                                    <div class="summary">
+                                        <p><h5>Preparation time:     <c:out value="${recipe.getPreparationTime()}"/> min</h5></p>
+                                    </div>
+                                    <div class="summary">
+                                        <p  ><h5>Cooking time:     <c:out value="${recipe.getCookingTime()}"/> min</h5></p>
                                     </div>
                                 </div>
                             </div>

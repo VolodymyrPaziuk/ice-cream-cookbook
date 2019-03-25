@@ -21,7 +21,10 @@
                 class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.HOME_PATH}>Home</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                <c:if test = "${sessionScope.loginedUser.isAdmin()}">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
+                </c:if>
+                <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
             </ul>
@@ -32,7 +35,8 @@
     <section class="clean-block clean-services dark">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info"></h2>
+                <br>
+                <h1 class="text-info">Search recipe with ingredients</h1>
             </div>
 
 
@@ -40,6 +44,9 @@
 
 
             <div class="row">
+
+
+
 
                 </ul><c:forEach var="recipe" items="${recipes}">
                 <div class="col-md-6 col-lg-4">
@@ -61,6 +68,7 @@
         </div>
     </section>
 </main>
+
 <footer class="page-footer dark">
     <div class="container">
         <div class="row">

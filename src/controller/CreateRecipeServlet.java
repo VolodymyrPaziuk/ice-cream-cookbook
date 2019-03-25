@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("Duplicates")
 @WebServlet(PathToPage.CREATE_RECIPE_PATH)
 public class CreateRecipeServlet extends HttpServlet {
     private RecipeService recipeService = new RecipeService();
@@ -32,11 +33,18 @@ public class CreateRecipeServlet extends HttpServlet {
 
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
 
-        if (loginedUserCredentials == null) {
+        if (loginedUserCredentials == null  ) {
             response.sendRedirect( PathToPage.LOGIN_PATH);
             return;
         }
-        request.getRequestDispatcher(PathToJsp.CREATE_RECIPE_PAGE_JSP).forward(request, response);
+
+        if(!loginedUserCredentials.isAdmin()){
+            request.getRequestDispatcher(PathToPage.HOME_PATH).forward(request, response);
+        }else {
+            request.getRequestDispatcher(PathToJsp.CREATE_RECIPE_PAGE_JSP).forward(request, response);
+        }
+
+
     }
 
     @Override

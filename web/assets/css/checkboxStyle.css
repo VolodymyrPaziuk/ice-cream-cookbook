@@ -28,7 +28,7 @@ span {
     padding: 20px 0;
     cursor: pointer;
     display: block;
-    margin: 0 auto;
+    margin: 5px 0;
     transition: background-color 150ms ease-in;
 }
 
