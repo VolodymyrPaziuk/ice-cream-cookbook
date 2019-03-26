@@ -54,7 +54,8 @@
                     </c:forEach>
 
                     <input type="hidden" name="selectedIngredients" id="selectedIngredients"/>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit"  value="Submit" onClick="processIngredients()" >Search</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="byIngredients" onClick="processIngredients()" >Search (by ingredients)</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="withIngredients" onClick="processIngredients()" >Search (contains ingredients)</button></div>
 
                 </form>
             </ul>

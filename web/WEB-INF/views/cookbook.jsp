@@ -24,11 +24,14 @@
                     <c:if test = "${sessionScope.loginedUser.isAdmin()}">
                         <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.CREATE_RECIPE_PATH}>create</a></li>
                     </c:if>
+
+
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.SEARCH_RECIPE_PATH}>search</a></li>
+
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.USER_INFO}>settings</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href=${PathToPage.LOGOUT_PATH}>log out</a></li>
                 </ul>
-        </div>s
+        </div>
         </div>
     </nav>
     <main class="page service-page">

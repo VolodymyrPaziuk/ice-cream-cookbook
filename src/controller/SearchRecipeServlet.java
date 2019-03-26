@@ -44,13 +44,16 @@ public class SearchRecipeServlet extends HttpServlet {
 
 
         String ingredients = request.getParameter("selectedIngredients");
-
+        String action = request.getParameter("action");
         RecipeService recipeService = new RecipeService();
         List<Recipe>  recipeList = new ArrayList<>();
 
-        recipeList = recipeService.getRecipesByIngredients(ingredients);
-        System.out.println(recipeList.toString());
-        System.out.println(ingredients);
+
+        if("byIngredients".equals(action)){
+            recipeList = recipeService.getRecipesByIngredients(ingredients);
+        }else if ("withIngredients".equals(action)){
+            recipeList = recipeService.getRecipesWithIngredients(ingredients);
+        }
 
 
         request.setAttribute("recipes", recipeList);
