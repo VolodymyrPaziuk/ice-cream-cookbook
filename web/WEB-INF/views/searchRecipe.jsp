@@ -96,14 +96,9 @@
         var hiddenSelectedIngredients = document.getElementById("selectedIngredients");
         hiddenSelectedIngredients.value = selectedIngredientTypes.join(",");
 
-        // jQuery
-        /* $("#selectedVehicles").value(selectedVehicleTypes.join(",")); */
-
         var form = document.getElementById("ingredients");
         form.submit();
 
-        //jQuery
-        /* $("#vehicles").submit(); */
     }
 </script>
 

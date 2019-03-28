@@ -37,8 +37,8 @@ public class RegistrationServlet extends HttpServlet {
         String userSurname = request.getParameter(Attribute.SURNAME);
 
 
-        if ((login != null) && (login.length()> 5)
-                && (password != null) && (password.length()> 5) ){
+        if ((login != null) && (login.length()> 4)
+                && (password != null) && (password.length()> 4) ){
 
             UserCredentials userCredentials = new UserCredentials(login, password);
             userCredentialsService.add(userCredentials);

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(PathToPage.LOGIN_PATH)
-public class loginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP);
@@ -31,13 +31,12 @@ public class loginServlet extends HttpServlet {
         String rememberMeStr = request.getParameter(Attribute.REMEMBER_ME);
         boolean remember = "yes".equals(rememberMeStr);
         UserCredentials userCredentials = null;
+        System.out.println(remember);
 
         String login = request.getParameter(Attribute.LOGIN);
         String password = request.getParameter(Attribute.PASSWORD);
 
         if (checkLoginValidation(login, password)) {
-
-
             UserCredentialsService userCredentialsService = new UserCredentialsService();
             userCredentials = userCredentialsService.getUserCredentials(login,password);
 

@@ -554,6 +554,7 @@ pre code {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+
     margin-right: -15px;
     margin-left: -15px
 }
@@ -581,7 +582,6 @@ pre code {
     flex-basis: 0;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    max-width: 100%
 }
 
 .col-auto {
@@ -10225,7 +10225,7 @@ body, html {
 }
 
 .clean-block.clean-post .post-body h3 {
-    font-weight: 600
+    font-weight: 300
 }
 
 .clean-block.clean-post .post-body p {
@@ -10533,7 +10533,7 @@ body, html {
     }
 
     .clean-block.clean-post .post-body {
-        padding: 70px 150px
+        padding: 70px 30px
     }
 
     .clean-block.clean-testimonials .item {

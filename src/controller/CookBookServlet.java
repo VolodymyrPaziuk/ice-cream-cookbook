@@ -24,15 +24,18 @@ public class CookBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserCredentials loginedUserCredentials = AuthUtils.getLoginedUser(session);
+        System.out.println(loginedUserCredentials);
 
 
-        List<Recipe> recipeList = recipeService.getAll();
-        request.setAttribute("recipes", recipeList);
 
         if (loginedUserCredentials == null) {
             request.getRequestDispatcher(PathToJsp.LOGIN_PAGE_JSP).forward(request, response);
             return;
         }
+
+        List<Recipe> recipeList = recipeService.getAll();
+        request.setAttribute("recipes", recipeList);
+
 
 
         request.getRequestDispatcher(PathToJsp.HOME_PAGE_JSP).forward(request, response);

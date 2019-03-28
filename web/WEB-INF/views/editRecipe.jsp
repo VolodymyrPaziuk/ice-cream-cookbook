@@ -36,40 +36,23 @@
             <div class="block-content">
                 <div class="post-body">
                     <form action="/editRecipe" method="post" enctype="multipart/form-data">
+
                     <h3>Edit recipe</h3>
                     <div class="post-info"><span>You are admin</span></div>
 
                     <p >  <img class="img-fluid d-block mx-auto" src=<c:out value="${recipe.getImage()}"/> > </p>
 
-                        <div class="col"><input class="ion-android-radio-button-off" name="image_uploads"
+                        <div class="form-group"><input class="ion-android-radio-button-off" name="image_uploads"
                                                 type="file"
                                                 accept=".jpg, .jpeg, .png" style="height: 30px;width: 100%;"></div>
 
+                        <div class="form-group"><label>Recipe name</label><input class="form-control" type="text" value="${(recipe.getName())}" name="recipeName" placeholder="Enter recipe name" style="height: 30px;width: 100%;"></div>
+                        <div class="form-group"><label>Preparation time</label><input class="form-control" type="number" value="${(recipe.getPreparationTime())}"name="prepTime" placeholder="Enter preparation time"  style="height: 30px;width: 100%;"></div>
+                        <div class="form-group"><label>Cooking time</label><input class="form-control" type="number" value="${(recipe.getCookingTime())}" name="cookTime" placeholder="Enter cooking time" style="height: 30px;width: 100%;"></div>
+                        <div class="form-group"><label>Description</label><textarea class="form-control"  type="text" value="${(recipe.getDescription())}"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"> ${(recipe.getDescription())}</textarea></div>
 
-                    <div class="row" style="height: 30px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Recipe name</p>
-                        </div>
-                        <div class="col"><input type="text" value="${(recipe.getName())}" name="recipeName" placeholder="Enter recipe name" style="height: 30px;width: 100%;"></div>
-                    </div>
-                    <div class="row" style="height: 30px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Preparation time</p>
-                        </div>
-                        <div class="col"><input type="number" value="${(recipe.getPreparationTime())}"name="prepTime" placeholder="Enter preparation time"  style="height: 30px;width: 100%;"></div>
-                    </div>
-                    <div class="row" style="height: 30px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Cooking time</p>
-                        </div>
-                        <div class="col"><input type="number" value="${(recipe.getCookingTime())}" name="cookTime" placeholder="Enter cooking time" style="height: 30px;width: 100%;"></div>
-                    </div>
-                    <div class="row" style="height: 200px;padding-bottom: 60px;">
-                        <div class="col-xl-4">
-                            <p>Description</p>
-                        </div>
-                        <div class="col"><textarea  type="text" value="${(recipe.getDescription())}"  name="instruction" placeholder="Write instruction" style="height: 190px;width: 100%;"> ${(recipe.getDescription())}</textarea></div>
-                    </div>
+
+
                         <div class="form-group"><button class="btn btn-success btn-block" type="submit">Save</button></div>
                     </form>
                 </div>

@@ -125,8 +125,8 @@ public class RecipeService implements RecipeDAO {
 
         String query = " SELECT * from recipes r INNER JOIN recipes_has_ingredients ri on r.id=ri.recipes_id  " +
                 "INNER JOIN ingredients i on i.id=ri.ingredients_id  " +
-                "GROUP BY r.id  HAVING COUNT(DISTINCT i.id)="+ingredientsCount+" AND  " +
-                "COUNT(DISTINCT case when i.id IN ("+ingredients+")  then i.name end)="+ingredientsCount+";";
+                "GROUP BY r.id  HAVING COUNT(DISTINCT i.id)=" + ingredientsCount + " AND  " +
+                "COUNT(DISTINCT case when i.id IN (" + ingredients + ")  then i.name end)=" + ingredientsCount + ";";
 
         try {
             Statement statement = DBConnection.getConnection().createStatement();
@@ -228,7 +228,7 @@ public class RecipeService implements RecipeDAO {
     public void delete(int recipeId) {
         String query = "DELETE  FROM recipes where recipes.id = ? ";
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query)) {
-            preparedStatement.setInt(1,recipeId);
+            preparedStatement.setInt(1, recipeId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

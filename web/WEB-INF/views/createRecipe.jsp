@@ -36,50 +36,29 @@
 <main class="page blog-post">
     <section class="clean-block clean-post dark">
         <div class="container">
-
             <div class="block-content">
                 <div class="post-body">
                     <form action="" method="post"  enctype="multipart/form-data">
                         <h3>Create recipe</h3>
                         <div class="post-info"><span>By  ${sessionScope.loginedUser.getLogin()} </span></div>
 
-                        <div class="row" style="height: 30px;padding-bottom: 60px;">
-                            <div class="col-xl-4">
-                                <p>Recipe name</p>
-                            </div>
-                            <div class="col"><input class="ion-android-radio-button-off" name="image_uploads"
-                                                    type="file"
-                                                    accept=".jpg, .jpeg, .png" style="height: 30px;width: 100%;"></div>
-                            </div>
 
-                        <div class="row" style="height: 30px;padding-bottom: 60px;">
-                            <div class="col-xl-4">
-                                <p>Recipe name</p>
-                            </div>
-                            <div class="col"><input type="text" name="recipeName" minlength="2"  placeholder="Enter recipe name"
-                                                    style="height: 30px;width: 100%;"></div>
-                        </div>
-                        <div class="row" style="height: 30px;padding-bottom: 60px;">
-                            <div class="col-xl-4">
-                                <p>Preparation time</p>
-                            </div>
-                            <div class="col"><input type="number" name="prepTime" placeholder="Enter preparation time"
-                                                    style="height: 30px;width: 100%;"></div>
-                        </div>
-                        <div class="row" style="height: 30px;padding-bottom: 60px;">
-                            <div class="col-xl-4">
-                                <p>Cooking time</p>
-                            </div>
-                            <div class="col"><input type="number" name="cookTime" placeholder="Enter cooking time"
-                                                    style="height: 30px;width: 100%;"></div>
-                        </div>
-                        <div class="row" style="height: 200px;padding-bottom: 60px;">
-                            <div class="col-xl-4">
-                                <p>Description</p>
-                            </div>
-                            <div class="col"><textarea type="text" name="instruction" minlength="10" placeholder="Write instruction"
-                                                       style="height: 190px;width: 100%;"> </textarea></div>
-                        </div>
+                        <div class="form-group"><label>Enter file </label> <input class="ion-android-radio-button-off" name="image_uploads"
+                                                                           type="file"
+                                                                           accept=".jpg, .jpeg, .png" style="height: 30px;width: 80%;"></div>
+                        <div class="form-group"><label>Recipe Name</label><input class="form-control" type="text" name="recipeName" minlength="2"  placeholder="Enter recipe name"> </div>
+                        <div class="form-group"><label>Preparation time</label> <input  class="form-control" type="number" name="prepTime" placeholder="Enter preparation time"
+                                                                                       ></div>
+                        <div class="form-group"><label>Cooking time</label><input class="form-control" type="number" name="cookTime" placeholder="Enter cooking time"
+                                                                               > </div>
+                        <div class="form-group"><label>Description</label><textarea class="form-control" type="text" name="instruction" minlength="10" placeholder="Write instruction"
+                                                                                    > </textarea> </div>
+
+
+
+
+
+
 
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit">Create</button>

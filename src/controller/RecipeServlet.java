@@ -41,8 +41,6 @@ public class RecipeServlet extends HttpServlet {
             request.getRequestDispatcher(PathToJsp.RECIPE_PAGE_JSP).forward(request, response);
         }
 
-
-
     }
 
     @Override

@@ -5,7 +5,6 @@ import constants.PathToJsp;
 import constants.PathToPage;
 import entity.Ingredient;
 import entity.Recipe;
-import entity.UserCredentials;
 import service.IngredientService;
 import service.RecipeService;
 
@@ -15,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,19 +40,18 @@ public class SearchRecipeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         String ingredients = request.getParameter("selectedIngredients");
         String action = request.getParameter("action");
+
         RecipeService recipeService = new RecipeService();
-        List<Recipe>  recipeList = new ArrayList<>();
+        List<Recipe> recipeList = new ArrayList<>();
 
 
-        if("byIngredients".equals(action)){
+        if ("byIngredients".equals(action)) {
             recipeList = recipeService.getRecipesByIngredients(ingredients);
-        }else if ("withIngredients".equals(action)){
+        } else if ("withIngredients".equals(action)) {
             recipeList = recipeService.getRecipesWithIngredients(ingredients);
         }
-
 
         request.setAttribute("recipes", recipeList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(PathToJsp.SEARCH_RESULT_PAGE_JSP);

@@ -88,15 +88,9 @@
                                 <p style="white-space: pre-wrap;"><c:out value="${recipe.getDescription()}"/></p>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <figure class="figure"><img class="img-fluid figure-img" src=<c:out
-                                                value="${recipe.getImage()}"/>></figure>
+
                                     </div>
-                                    <div class="col-md-7">
-                                        <h4>Lorem Ipsum</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna,
-                                            dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit.</p>
-                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">
